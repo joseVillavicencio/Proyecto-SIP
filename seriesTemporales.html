@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<title>Agregar/Eliminar Inputs</title>
+		<script src="http://dl.dropbox.com/u/76575397/jQuery/jquery-1.9.1.min.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+			input[type="text"]{
+				background-color: #FFFFFF;
+				border: 1px solid #CCCCCC;
+				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+				transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+				border-radius: 4px 4px 4px 4px;
+				color: #555555;
+				display: inline-block;
+				font-size: 14px;
+				height: 20px;
+				line-height: 20px;
+				margin-bottom: 10px;
+				padding: 4px 6px;
+				vertical-align: middle;
+			}
+			input[type="text"]:focus {
+				border-color: rgba(82, 168, 236, 0.8);
+				outline: 0 none;
+				-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+				-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+				box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+			}
+			a {
+				text-decoration: none;
+			}
+
+
+			.btn {
+				-moz-border-bottom-colors: none;
+				-moz-border-left-colors: none;
+				-moz-border-right-colors: none;
+				-moz-border-top-colors: none;
+				border-image: none;
+				border-radius: 4px 4px 4px 4px;
+				border-style: solid;
+				border-width: 1px;
+				box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+				cursor: pointer;
+				display: inline-block;
+				font-size: 14px;
+				line-height: 20px;
+				margin-bottom: 0;
+				padding: 4px 12px;
+				text-align: center;
+				vertical-align: middle;
+			}
+			.btn-info {
+				background-color: #49AFCD;
+				background-image: linear-gradient(to bottom, #5BC0DE, #2F96B4);
+				background-repeat: repeat-x;
+				border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+				color: #FFFFFF;
+				text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+			}
+			.btn:hover{
+				color:#333;
+				text-decoration:none;
+				background-position:0 -15px;
+				-webkit-transition:background-position .1s linear;
+				-moz-transition:background-position .1s linear;
+				-o-transition:background-position .1s linear;
+				transition:background-position .1s linear;
+			}
+			.btn-info:hover{
+				color:#fff;
+				background-color:#2f96b4;
+			}
+			#contenedor {
+				margin-top: 15px;
+			}
+			#wrapper {
+				width: 380px;
+				margin: 50px auto 0;
+			}
+			.added {
+				float: left;
+				margin-right: 10px;
+			}
+			.eliminar {
+				margin: 5px;
+			}
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				var MaxInputs       = 8; //maximum input boxes allowed
+				var contenedor   	= $("#contenedor"); //Input boxes wrapper ID
+				var AddButton       = $("#agregarCampo"); //Add button ID
+
+				//var x = contenedor.length; //initlal text box count
+				var x = $("#contenedor div").length + 1;
+				var FieldCount = x-1; //to keep track of text box added
+
+				$(AddButton).click(function (e)  //on add input button click
+				{
+						if(x <= MaxInputs) //max input box allowed
+						{
+							FieldCount++; //text box added increment
+							//add input box
+							$(contenedor).append('<div class="added"><input type="text" name="mitexto[]" id="campo_'+ FieldCount +'" placeholder="Texto '+ FieldCount +'"/><a href="#" class="eliminar">&times;</a></div>');
+							x++; //text box increment
+						}
+				return false;
+				});
+
+				$("body").on("click",".eliminar", function(e){ //user click on remove text
+						if( x > 1 ) {
+								$(this).parent('div').remove(); //remove text box
+								x--; //decrement textbox
+						}
+				return false;
+				});
+
+			});
+		</script>
+	</head>
+	<body>
+		<div id="listas" class="col-lg-6 col-lg-offset-1 col-md-7" >		
+				<table class="table">
+				  <h2>Método de la Media Móvil</h2><br>
+				  <thead>
+						<tr>
+							<th>Periodo</th>
+							<th>Demanda</th>
+						</tr>
+				  </thead>
+					<tbody id="cuerpotabla" >
+						<script type="text/javascript">
+							verLetras("#cuerpotabla");
+						</script>
+					</tbody>
+				</table>
+			</div>
+		<div id="wrapper">
+			<a id="agregarCampo" class="btn btn-info" href="#">Agregar Campo</a>
+			<div id="contenedor">
+				<div class="added">
+					<input type="text" name="mitexto[]" id="campo_1" placeholder="Texto 1"/><a href="#" class="eliminar">&times;</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
