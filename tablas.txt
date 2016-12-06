@@ -33,3 +33,107 @@ CREATE TABLE pro_ecu_lineal(
     FOREIGN KEY(ref_producto) REFERENCES producto(id_producto),
     FOREIGN KEY(ref_pronostico) REFERENCES pronostico(id_pronostico)
 );
+
+CREATE TABLE pro_sua_expo(
+    id_se INTEGER AUTO_INCREMENT PRIMARY KEY,
+    ref_pronostico INTEGER,
+    ref_producto INTEGER,
+    pt1 INTEGER,
+    mt INTEGER,
+    mt_1 INTEGER,
+    tt INTEGER,
+    a1 INTEGER,
+    a2 INTEGER,
+    FOREIGN KEY(ref_producto) REFERENCES producto(id_producto),
+    FOREIGN KEY(ref_pronostico) REFERENCES pronostico(id_pronostico)
+);
+
+CREATE TABLE pro_estacional(
+    id_est  INTEGER AUTO_INCREMENT PRIMARY KEY,
+    ciclos INTEGER,
+    FOREIGN KEY(ref_producto) REFERENCES producto(id_producto),
+    FOREIGN KEY(ref_pronostico) REFERENCES pronostico(id_pronostico)
+);
+
+CREATE TABLE pro_estacion(
+    id_esta INTEGER AUTO_INCREMENT PRIMARY KEY,
+    media_movil_c INTEGER,
+    indice INTEGER,
+    ref_pro_estacional INTEGER,
+    FOREIGN KEY(ref_pro_estacional) REFERENCES pro_estacional(id_est),
+);
+
+CREATE TABLE pro_correlacion(
+    id_corr INTEGER AUTO_INCREMENT PRIMARY KEY,
+    a INTEGER,
+    b INTEGER,
+    n INTEGER,
+    FOREIGN KEY(ref_producto) REFERENCES producto(id_producto),
+    FOREIGN KEY(ref_pronostico) REFERENCES pronostico(id_pronostico)
+);
+
+CREATE TABLE plan_produccion(
+    id_pprod INTEGER AUTO_INCREMENT PRIMARY KEY,
+    periodo INTEGER,
+    demanda INTEGER,
+    stock_inicial INTEGER,
+    pro_normal INTEGER,
+    pro_extra INTEGER,
+    pro_subc INTEGER,
+    prod_dem INTEGER,
+    stock_final INTEGER,
+    stock_medio INTEGER,
+    atrasos INTEGER
+);
+
+CREATE TABLE plan_costos(
+    id_cost INTEGER AUTO_INCREMENT PRIMARY KEY,
+    ref_pprod INTEGER,
+    costo_normal INTEGER,
+    costo_extra INTEGER,
+    costo_subc INTEGER,
+    costo_stock INTEGER,
+    costo_atraso INTEGER
+    total INTEGER,
+    FOREIGN KEY(ref_pprod) REFERENCES plan_produccion(id_pprod)
+);
+
+CREATE TABLE reposicion(
+    id_repo INTEGER AUTO_INCREMENT PRIMARY KEY,
+    demanda INTEGER,
+    costo_unitario INTEGER,
+    costo_u_prepa INTEGER,
+    n_pedidos INTEGER,
+    q INTEGER,
+    qm INTEGER,
+    tasa_cargos INTEGER,
+    q_aste INTEGER,
+    n_aste
+    ct INTEGER,
+);
+
+CREATE TABLE mod_pto_pedido(
+    id_pp INTEGER AUTO_INCREMENT PRIMARY KEY,
+    ref_reposicion INTEGER,
+    d_chica INTEGER,
+    t_chica INTEGER,
+    qs INTEGER,
+    pp INTEGER,
+    q_max INTEGER,
+    FOREIGN KEY(ref_reposicion) REFERENCES reposicion(id_repo)
+);
+
+CREATE TABLE mod_rev_period(
+    id_revp INTEGER AUTO_INCREMENT PRIMARY KEY,
+    ref_repo INTEGER,
+    tr INTEGER,
+    t_anio INTEGER,
+    n_aste INTEGER,
+    q_aste INTEGER,
+    d_chica INTEGER,
+    qf INTEGER,
+    qp INTEGER,
+    qs INTEGER,
+    qr INTEGER,
+    FOREIGN KEY(ref_reposicion) REFERENCES reposicion(id_repo)
+);
