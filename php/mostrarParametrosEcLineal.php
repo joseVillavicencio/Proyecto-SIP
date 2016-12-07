@@ -3,23 +3,25 @@
 	include('funcionesI.php');
 	$conexion = conectar();
 	
-	$producto=1;
+	$producto=2;
+	$sumatoriaSemana=0;
+	$sumatoriaSemana2=0;
 	mysqli_set_charset($conexion,"utf8");
 	if($conexion->connect_errno ) {
 		die ("Error de conexion");
 	}else{
-		$sql = "call obtenerProMediaExp('".$producto."');";
+		$sql = "call datosECL('".$producto."');";
 		
 		if($result = $conexion->query($sql)){
 		
 			if($result->num_rows >0){
 				
 				while($fila = mysqli_fetch_row($result)){
-					$n= $fila[0];
-					$demanda= $fila[1];
-					$prevision= $fila[2];
-					$error= $fila[3];
-					echo '<tr class="odd"><td>'.$n.'</td><td>'.$demanda.'</td><td>'.$prevision.'</td><td>'.$error.'</td></tr>';
+					$a= $fila[0];
+					$b= $fila[1];
+					$y= $a."+".$b."X";
+					
+					echo '<tr><td>'.$a.'</td><td>'.$b.'</td><td>'.$y.'</td><tr>';
 				}
 			}
 		}

@@ -13,7 +13,7 @@
     <link href="assets/css/table.css" rel="stylesheet">
 
 
-
+	<script src="js/funcionesPrevision.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
     <style type="text/css">
@@ -76,37 +76,52 @@
     </div>
 
     <div class="container">
-
-      <!-- CONTENT -->
+		<div class="row">
+			<div class="col-sm-6 col-lg-6">
+				<h4><strong>Ecuación Lineal</strong></h4>
+				<table class="display">
+					<thead>
+						<tr>
+						  <th>a</th>
+						  <th>b</th>
+						  <th>Y</th>
+						</tr>
+					</thead>
+					 
+					<tbody id="lineal2">
+						<script type="text/javascript"> 
+							mostrarDatosEcLineal("#lineal2");
+						</script>
+					</tbody>
+					  
+				</table>
+			</div>
+		</div>
+	<br>
 	<div class="row">
+		
 		<div class="col-sm-12 col-lg-12">
-			<h4><strong>Ecuación Lineal</strong></h4>
+			
 			  <table class="display">
 	          <thead>
 	            <tr>
-	              <th>Periodo</th>
-	              <th>Demanda</th>
-	              <th>Previsión</th>
-	              <th>Error</th>
+	              <th>Período(X)</th>
+	              <th>Demanda(Y)</th>
+	              <th>Sumatoria X</th>
+	              <th>Sumatoria^2 </th>
+				  <th>XY</th>
+				  
 	            </tr>
 	          </thead>
-	          <tbody>
-	            <tr class="odd">
-	              <td>1</td>
-	             
-	             
-	            </tr>
-	            
-	            <tr class="even">
-	              <td>2</td>
-	             
-	            </tr>
-	           
-	          </tbody>
-	         </table><!--/END First Table -->
-			 <br>
-			 <!--SECOND Table -->
-
+	         
+	            <tbody id="lineal">
+							<script type="text/javascript"> 
+								mostrarEcLineal("#lineal");
+							</script>
+				</tbody>
+	          
+	         </table>
+			 
 
 		
 		</div><!--/span12 -->
@@ -135,7 +150,5 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-    <script type="text/javascript" src="assets/js/admin.js"></script>
-
-  
+ 
 </body></html>
