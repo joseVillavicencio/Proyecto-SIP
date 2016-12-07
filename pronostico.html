@@ -73,18 +73,99 @@
 	
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2" id="subir_excel">
-					<form enctype="multipart/form-data" action="php/subir_excel.php" method="POST">
-						<!-- MAX_FILE_SIZE debe preceder al campo de entrada del fichero -->
-						<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-						<!-- El nombre del elemento de entrada determina el nombre en el array $_FILES -->
-						Enviar este fichero: <input name="fichero_usuario" type="file" /><br>
-						<input type="submit" value="Enviar fichero" /><br>
-					</form>
+				<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2" id="mostrar_base">
+					<h4><strong>Base de Datos</strong></h4>
+					<hr>
+					
 				</div>
 			</div>
 		</div>
-      	
+      	<div class="container">
+      	    <h2><center><strong>Seleccione la técnica de previsión </strong></center></h2>
+			<br>
+      		<div class="row">
+      			<div class="col-sm-offset-1 col-sm-2 col-lg-offset-1 col-lg-2">
+      				<div id="hosting-table">
+						<div class="table_style4"> 
+							<div class="column">
+								<ul>
+				                  	<li><strong>Media exponencial móvil</strong></li>
+									<li class="header_row">
+										<h4 style="color:white">Promedio</h4>
+									</li>
+									
+									<li class="footer_row"><a href="mediaExponencialMovil.html" class="hosting-button">Seleccionar</a></li>
+								</ul>
+							</div><!--/ column-->
+						</div><!--/ Table Style-->
+					</div><!--/ Hosting Table-->	
+      			</div><!-- /span3 -->	
+      			<div class="col-sm-2 col-lg-2">
+      				<div id="hosting-table">
+						<div class="table_style4"> 
+							<div class="column">
+								<ul>
+				                  	<li><strong>Ecuación Lineal</strong></li>
+									<li class="header_row">
+										<h4 style="color:white">Tendencia</h4>
+									</li>
+									
+									<li class="footer_row"><a href="ecuacionLineal.html" class="hosting-button">Seleccionar</a></li>
+								</ul>
+							</div><!--/ column-->
+						</div><!--/ Table Style-->
+					</div><!--/ Hosting Table-->	
+      			</div><!-- /span3 -->	
+      			<div class="col-sm-2 col-lg-2">
+      				<div id="hosting-table">
+						<div class="table_style4"> 
+							<div class="column">
+								<ul>
+				                  	<li><strong>Suavizado Exponencial</strong></li>
+									<li class="header_row">
+										<h4 style="color:white">Tendencia</h4>
+									</li>
+									<li class="footer_row"><a href="suavizadoExponencial.html" class="hosting-button">Seleccionar</a></li>
+								</ul>
+							</div><!--/ column-->
+						</div><!--/ Table Style-->
+					</div><!--/ Hosting Table-->	
+      			</div><!-- /span3 -->	
+      			<div class="col-sm-2 col-lg-2">
+      				<div id="hosting-table">
+						<div class="table_style4"> 
+							<div class="column">
+								<ul>
+				                  	<li><strong>Estacionalidad</strong></li>
+									<li class="header_row">
+										<h4 style="color:white">Estacionalidad</h4>
+									</li>
+									<li class="footer_row"><a href="estacionalidad.html" class="hosting-button">Seleccionar</a></li>
+								</ul>
+							</div><!--/ column-->
+						</div><!--/ Table Style-->
+					</div><!--/ Hosting Table-->	
+					
+      			</div><!-- /span3 -->	
+				<div class="col-sm-2 col-lg-2">
+      				<div id="hosting-table">
+						<div class="table_style4"> 
+							<div class="column">
+								<ul>
+				                  	<li><strong>Correlaciones</strong></li>
+									<li class="header_row">
+										<h4 style="color:white">Correlación</h4>
+									</li>
+									<li class="footer_row"><a href="correlaciones.html" class="hosting-button">Seleccionar</a></li>
+								</ul>
+							</div><!--/ column-->
+						</div><!--/ Table Style-->
+					</div><!--/ Hosting Table-->	
+				</div>
+      		</div><!-- /row -->
+      	</div><!-- /container -->
+      	<br>
+	<!-- FOOTER -->	
 	<div id="footerwrap">
       	<footer class="clearfix"></footer>
       	<div class="container">
