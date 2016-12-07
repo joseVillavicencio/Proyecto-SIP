@@ -51,6 +51,8 @@ CREATE TABLE pro_sua_expo(
 CREATE TABLE pro_estacional(
     id_est  INTEGER AUTO_INCREMENT PRIMARY KEY,
     ciclos INTEGER,
+ref_producto INTEGER,
+   ref_pronostico INTEGER,
     FOREIGN KEY(ref_producto) REFERENCES producto(id_producto),
     FOREIGN KEY(ref_pronostico) REFERENCES pronostico(id_pronostico)
 );
@@ -60,14 +62,15 @@ CREATE TABLE pro_estacion(
     media_movil_c INTEGER,
     indice INTEGER,
     ref_pro_estacional INTEGER,
-    FOREIGN KEY(ref_pro_estacional) REFERENCES pro_estacional(id_est),
+    FOREIGN KEY(ref_pro_estacional) REFERENCES pro_estacional(id_est)
 );
-
 CREATE TABLE pro_correlacion(
     id_corr INTEGER AUTO_INCREMENT PRIMARY KEY,
     a INTEGER,
     b INTEGER,
     n INTEGER,
+    ref_producto INTEGER,
+    ref_pronostico INTEGER,
     FOREIGN KEY(ref_producto) REFERENCES producto(id_producto),
     FOREIGN KEY(ref_pronostico) REFERENCES pronostico(id_pronostico)
 );
@@ -93,7 +96,7 @@ CREATE TABLE plan_costos(
     costo_extra INTEGER,
     costo_subc INTEGER,
     costo_stock INTEGER,
-    costo_atraso INTEGER
+    costo_atraso INTEGER,
     total INTEGER,
     FOREIGN KEY(ref_pprod) REFERENCES plan_produccion(id_pprod)
 );
@@ -108,8 +111,8 @@ CREATE TABLE reposicion(
     qm INTEGER,
     tasa_cargos INTEGER,
     q_aste INTEGER,
-    n_aste
-    ct INTEGER,
+    n_aste INTEGER,
+    ct INTEGER
 );
 
 CREATE TABLE mod_pto_pedido(
@@ -125,7 +128,7 @@ CREATE TABLE mod_pto_pedido(
 
 CREATE TABLE mod_rev_period(
     id_revp INTEGER AUTO_INCREMENT PRIMARY KEY,
-    ref_repo INTEGER,
+    ref_reposicion INTEGER,
     tr INTEGER,
     t_anio INTEGER,
     n_aste INTEGER,
