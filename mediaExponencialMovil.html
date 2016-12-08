@@ -59,31 +59,18 @@
 
 		<div class="container">
 			<fieldset id="buildyourform">
-				<legend>Ingrese los datos necesarios</legend>
+				<legend>Media Exponencial Móvil</legend>
 			</fieldset>
-			<!--<form name="frm_multiple" method="post" action="php/procesar.php">		
-				<ol id="coef">
-					<label>Coeficiente de Ponderación:</label><input type="text" size="20" name="periodo[]" /> 
-				</ol>
+			
+			 <div class="body" id="body">
+        		<label for="name">Ingrese coeficiente de ponderación:</label>
+				<input name="c" id="c" class="input-huge" type="text">
 				
-				<ol id="periodo">
-					<label>Período:</label><input type="text" size="20" id="periodo" name="periodo[]" /> 
-					
-				</ol>
-				<ol id="demanda">
-					<label>Demanda:</label><input type="text" size="20" id="demanda" name="demanda[]" /> 
-				</ol>
-				<ol id="emails">
-						<span><a href="#" onclick="agregar();">Agregar</a></span><br>
-				</ol>
-				<p align="center"><input type="submit" name="Send" value="Calcular" /></p>
-				<!--<button type="button" onclick="mandarDatos();" class="btn btn-warning">Asignar</button><br>
-			
-			</form>-->
-			
+				<button class="btn btn-success" onclick="enviarParametro('#media');" >Enviar</button>
+			</div>
 			<div class="row">
 				<div class="col-sm-12 col-lg-12">
-					<h4><strong>Media Exponencial Móvil</strong></h4>
+					<h4><strong>Resultado</strong></h4>
 					<table class="display">
 						  <thead>
 							<tr>
@@ -94,13 +81,9 @@
 							</tr>
 						  </thead>
 						<tbody id="media">
-							<tr class="odd">
-							  <td>
-									<script type="text/javascript"> 
-										mostrarMediaExponencial("#media");
-									</script>
-								</td>
-							</tr>
+							<script type="text/javascript"> 
+								//mostrarMediaExponencial("#media");
+							</script>
 						</tbody>
 					</table><!--/END First Table -->
 					 <br>
