@@ -12,7 +12,7 @@
     <!-- DATA TABLE CSS -->
     <link href="assets/css/table.css" rel="stylesheet">
 	<script src="js/funcionesPrevision.js" type="text/javascript"></script>
-
+	<script src="js/funcionesJose.js" type="text/javascript"></script>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
@@ -74,15 +74,9 @@
 		$producto=$_GET['key'];
 		echo "<input type='hidden' id='nProd' value=".$producto.">";
 	?>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2" id="mostrar_base">
-					<h4><strong>Base de Datos</strong></h4>
-					<hr>
-					
-				</div>
-			</div>
-		</div>
+		<script type="text/javascript">
+			setProducto($("#nProd").val());
+		</script>
       	<div class="container">
       	    <h2><center><strong>Seleccione la técnica de previsión </strong></center></h2>
 			<br>
