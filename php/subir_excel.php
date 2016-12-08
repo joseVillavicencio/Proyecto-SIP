@@ -78,10 +78,10 @@ if (move_uploaded_file($_FILES['fichero_usuario']['tmp_name'], $fichero_subido))
 			echo("<td>".$data->sheets[0]['cells'][$i][$j] ."</td>");
 		}*/	
 		}
+		mysqli_close($conexion);
 	}
-	mysqli_close($conexion);
 	if($flag){
-		header ('location:\Proyecto-SIP/pronostico.html');
+		header ('location:\Proyecto-SIP/pronostico.php?key='.$producto.'');
 	}
 } else {
     echo "¡Posible ataque de subida de ficheros!\n";
