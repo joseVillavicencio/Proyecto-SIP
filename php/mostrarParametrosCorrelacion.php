@@ -2,7 +2,7 @@
 	header('Content-Type: charset=utf-8');
 	include('funcionesI.php');
 	$conexion = conectar();
-		//$producto=$_POST["p"];
+	
 	$producto=2;
 	$sumatoriaSemana=0;
 	$sumatoriaSemana2=0;
@@ -10,7 +10,7 @@
 	if($conexion->connect_errno ) {
 		die ("Error de conexion");
 	}else{
-		$sql = "call datosECL('".$producto."');";
+		$sql = "call datosC('".$producto."');";
 		
 		if($result = $conexion->query($sql)){
 		
