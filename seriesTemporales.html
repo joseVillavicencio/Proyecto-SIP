@@ -1,151 +1,147 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
-	<head>
-		<meta charset="UTF-8">
-		<title>Agregar/Eliminar Inputs</title>
-		<script src="http://dl.dropbox.com/u/76575397/jQuery/jquery-1.9.1.min.js"></script>
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<style type="text/css">
-			input[type="text"]{
-				background-color: #FFFFFF;
-				border: 1px solid #CCCCCC;
-				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-				transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
-				border-radius: 4px 4px 4px 4px;
-				color: #555555;
-				display: inline-block;
-				font-size: 14px;
-				height: 20px;
-				line-height: 20px;
-				margin-bottom: 10px;
-				padding: 4px 6px;
-				vertical-align: middle;
-			}
-			input[type="text"]:focus {
-				border-color: rgba(82, 168, 236, 0.8);
-				outline: 0 none;
-				-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
-				-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
-				box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
-			}
-			a {
-				text-decoration: none;
-			}
+<!doctype html>
+<html><head>
+    <meta charset="utf-8">
+    <title>Previsión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <!-- DATA TABLE CSS -->
+    <link href="assets/css/table.css" rel="stylesheet">
 
 
-			.btn {
-				-moz-border-bottom-colors: none;
-				-moz-border-left-colors: none;
-				-moz-border-right-colors: none;
-				-moz-border-top-colors: none;
-				border-image: none;
-				border-radius: 4px 4px 4px 4px;
-				border-style: solid;
-				border-width: 1px;
-				box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-				cursor: pointer;
-				display: inline-block;
-				font-size: 14px;
-				line-height: 20px;
-				margin-bottom: 0;
-				padding: 4px 12px;
-				text-align: center;
-				vertical-align: middle;
-			}
-			.btn-info {
-				background-color: #49AFCD;
-				background-image: linear-gradient(to bottom, #5BC0DE, #2F96B4);
-				background-repeat: repeat-x;
-				border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-				color: #FFFFFF;
-				text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-			}
-			.btn:hover{
-				color:#333;
-				text-decoration:none;
-				background-position:0 -15px;
-				-webkit-transition:background-position .1s linear;
-				-moz-transition:background-position .1s linear;
-				-o-transition:background-position .1s linear;
-				transition:background-position .1s linear;
-			}
-			.btn-info:hover{
-				color:#fff;
-				background-color:#2f96b4;
-			}
-			#contenedor {
-				margin-top: 15px;
-			}
-			#wrapper {
-				width: 380px;
-				margin: 50px auto 0;
-			}
-			.added {
-				float: left;
-				margin-right: 10px;
-			}
-			.eliminar {
-				margin: 5px;
-			}
-		</style>
-		<script type="text/javascript">
+	
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="js/funcionesJose.js" type="text/javascript"></script>
+
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+  	<!-- Google Fonts call. Font Used Open Sans -->
+  	<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+
+  	<!-- DataTables Initialization -->
+    <script type="text/javascript" src="assets/js/datatables/jquery.dataTables.js"></script>
+  			<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
+				$('#dt1').dataTable();
+			} );
+	</script>
 
-				var MaxInputs       = 8; //maximum input boxes allowed
-				var contenedor   	= $("#contenedor"); //Input boxes wrapper ID
-				var AddButton       = $("#agregarCampo"); //Add button ID
+    
+  </head>
+  <body>
+  
+  	<!-- NAVIGATION MENU -->
 
-				//var x = contenedor.length; //initlal text box count
-				var x = $("#contenedor div").length + 1;
-				var FieldCount = x-1; //to keep track of text box added
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
+        <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><img src="assets/img/logo30.png" alt=""> BLOCKS Dashboard</a>
+        </div> 
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+              <li><a href="manager.html"><i class="icon-folder-open icon-white"></i> File Manager</a></li>
+              <li><a href="calendar.html"><i class="icon-calendar icon-white"></i> Calendar</a></li>
+              <li class="active"><a href="tables.html"><i class="icon-th icon-white"></i> Tables</a></li>
+              <li><a href="login.html"><i class="icon-lock icon-white"></i> Login</a></li>
+              <li><a href="user.html"><i class="icon-user icon-white"></i> User</a></li>
 
-				$(AddButton).click(function (e)  //on add input button click
-				{
-						if(x <= MaxInputs) //max input box allowed
-						{
-							FieldCount++; //text box added increment
-							//add input box
-							$(contenedor).append('<div class="added"><input type="text" name="mitexto[]" id="campo_'+ FieldCount +'" placeholder="Texto '+ FieldCount +'"/><a href="#" class="eliminar">&times;</a></div>');
-							x++; //text box increment
-						}
-				return false;
-				});
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+    </div>
 
-				$("body").on("click",".eliminar", function(e){ //user click on remove text
-						if( x > 1 ) {
-								$(this).parent('div').remove(); //remove text box
-								x--; //decrement textbox
-						}
-				return false;
-				});
-
-			});
-		</script>
-	</head>
-	<body>
-		<div id="listas" class="col-lg-6 col-lg-offset-1 col-md-7" >		
-				<table class="table">
-				  <h2>Método de la Media Móvil</h2><br>
-				  <thead>
-						<tr>
-							<th>Periodo</th>
-							<th>Demanda</th>
-						</tr>
-				  </thead>
-					<tbody id="cuerpotabla" >
-						<script type="text/javascript">
-							verLetras("#cuerpotabla");
-						</script>
-					</tbody>
-				</table>
-			</div>
-		<div id="wrapper">
-			<a id="agregarCampo" class="btn btn-info" href="#">Agregar Campo</a>
-			<div id="contenedor">
-				<div class="added">
-					<input type="text" name="mitexto[]" id="campo_1" placeholder="Texto 1"/><a href="#" class="eliminar">&times;</a>
+    <div class="container">
+		<h3 style="color:black;"><strong>Previsión con Estacionalidad</strong></h3>
+		<hr>
+		<div class="row">
+			<div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-5 col-sm-offset-1">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon3">Ciclos de estacionalidad:</span>
+					<input type="text" class="form-control" id="ciclos" aria-describedby="basic-addon3">
 				</div>
+				<br>
+				<button class="btn btn-success" type='button' onclick="estacional('#odd');">Calcular</button>
+			</div>
+			<div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6">
+				<h4>AQUI DEBERIA IR EL GRAFICO DE LOS DATOS</h4>
 			</div>
 		</div>
-	</body>
-</html>
+      <!-- CONTENT -->
+	<div class="row">
+		<div class="col-sm-7 col-lg-7">
+			<h4>Tabla de datos</h4>
+			  <table class="display">
+	          <thead>
+	            <tr>
+	              <th>Ciclo</th>
+	              <th>Indice</th>
+	            </tr>
+	          </thead>
+	          <tbody id="odd">
+	            
+	           
+	          </tbody>
+	         </table><!--/END First Table -->
+			 <br>
+			 <!--SECOND Table -->
+
+
+		
+		</div><!--/span12 -->
+		<div class="col-sm-4 col-sm-offset-1 col-lg-4 col-lg-offset-1" id="resultado">
+			
+		</div>
+      </div><!-- /row -->
+     </div> <!-- /container -->
+    	<br>	
+
+      	
+      	<br>
+	<!-- FOOTER -->	
+	<div id="footerwrap">
+      	<footer class="clearfix"></footer>
+      	<div class="container">
+      		<div class="row">
+      			<div class="col-sm-12 col-lg-12">
+      			<p><img src="assets/img/logo.png" alt=""></p>
+      			<p>Sitio Desarrollado por Dania Delgado- José Villavicencio- Copyright 2016</p>
+      			</div>
+
+      		</div><!-- /row -->
+      	</div><!-- /container -->		
+	</div><!-- /footerwrap -->
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+  
+</body></html>

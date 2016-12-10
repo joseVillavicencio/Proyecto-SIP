@@ -137,7 +137,7 @@
 									<li class="header_row">
 										<h4 style="color:white">Estacionalidad</h4>
 									</li>
-									<li class="footer_row"><a href="estacionalidad.html" class="hosting-button">Seleccionar</a></li>
+									<li class="footer_row"><a href="seriesTemporales.html" class="hosting-button">Seleccionar</a></li>
 								</ul>
 							</div><!--/ column-->
 						</div><!--/ Table Style-->
@@ -181,7 +181,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-    <script type="text/javascript" src="assets/js/admin.js"></script>
+    
 
   
 </body></html>
