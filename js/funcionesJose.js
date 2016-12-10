@@ -22,3 +22,32 @@ function suave(div){
 		}
 	});
 }
+
+function estacional(div){
+	var parametros = {
+		'prod':getProducto(),
+		'ciclos':document.getElementById('ciclos').value
+	};
+	$.ajax({
+		data:parametros,
+		url:'php/calc_est.php',
+		type:'POST',
+		
+		success: function(response){
+			$(div).append(response)
+			pro_indice(parametros);
+		}
+	});
+}
+
+function pro_indice(parametros){
+	$.ajax({
+		data:parametros,
+		url:'php/pro_indi.php',
+		type:'POST',
+		
+		success: function(response){
+			$('#resultado').append(response)
+		}
+	});
+}
