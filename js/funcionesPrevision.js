@@ -24,6 +24,7 @@ function mandarDatos(div){
 function mostrarMediaExponencial(div){
 	
 	var parametros = {
+
 		//'p':getProducto(),
 	}
 	$.ajax({
@@ -40,6 +41,7 @@ function mostrarMediaExponencial(div){
 function mostrarEcLineal(div){
 	
 	var parametros = {
+
 		//'p':getProducto(),
 	}
 	$.ajax({
@@ -70,6 +72,7 @@ function mostrarDatosEcLineal(div){
 	});
 }
 function enviarParametro(div){
+
 	var c=document.getElementById("c").value; //SETEAR VARIABLE LOCAL DEL PRODUCTO
 	var parametros = {
 		"c" : c,
@@ -81,8 +84,6 @@ function enviarParametro(div){
 		type: "POST",
 		
 		success: function(response){			
-		
-		
 			if(response==1){
 				var parametros = {
 					"c" : c,

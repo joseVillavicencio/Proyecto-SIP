@@ -2,6 +2,7 @@
 	header('Content-Type: charset=utf-8');
 	include('funcionesI.php');
 	$conexion = conectar();
+
 	//$producto=$_POST["p"];
 	$producto=3;
 	$coef=$_POST["c"];
@@ -17,8 +18,8 @@
 			if($result32 = $conexion->query($sql32)){
 				
 				if($result32->num_rows >0){
+
 						echo 1;
-					
 				}else{
 					
 					$conexion = conectar();
@@ -75,6 +76,7 @@
 											
 											if($result->num_rows >0){
 												while($fila = mysqli_fetch_row($result)){
+
 													$demanda_ant= $fila[0];
 													$prev= $fila[1];
 												}
@@ -84,6 +86,7 @@
 												
 												$conexion = conectar();
 												$sql = "call insertarDatosMediaExponencial('".$producto."','".$calcular."','".$error."','".$periodo."','".$coef."');";
+
 												if($result = $conexion->query($sql)){
 													if($result){
 													
@@ -113,6 +116,7 @@
 									$conexion = conectar();
 									$periodo=$periodo+1;
 									
+
 									$sql = "call insertarDatosMediaExponencial('".$producto."','".$calcular."','".$error."','".$periodo."','".$coef."');";
 									if($result = $conexion->query($sql)){
 										if($result){

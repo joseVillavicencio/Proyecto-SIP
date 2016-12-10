@@ -3,6 +3,7 @@
 	include('funcionesI.php');
 	$conexion = conectar();
 	$producto=3;
+
 	//$producto=$_POST["p"];
 	$coef=$_POST["c"];
 	$prevision=0;
@@ -15,6 +16,7 @@
 		$sql32 = "call existenDatosME('".$producto."','".$coef."');";
 			
 		if($result32 = $conexion->query($sql32)){
+
 			if($result32->num_rows >0){
 				$conexion = conectar();
 				$sql = "call mostrarME('".$producto."','".$coef."');";
@@ -40,11 +42,14 @@
 									echo '<tr><td>'.$periodo.'<td><td>'.$demanda.'<td><td>'.$prevision.'<td><td>'.$error.'<td></tr>';
 								}
 							}
+
 						}
 					}
 				}
 			}
+
 		}
+
 	}
 	mysqli_close($conexion);
 ?>
