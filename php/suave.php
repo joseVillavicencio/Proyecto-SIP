@@ -24,7 +24,29 @@
 				$sql2="CALL revisarSuave('".$id."','".$corte."','".$a1."','".$a2."');";
 				if($res=$conexion->query($sql2)){
 					if($res->num_rows>0){
-						//$sql3="CALL mostrarSuave('".$prod."','".$corte."','".$a1."','".$a2."');";
+						$conexion=conectar();
+						$sql3="CALL mostrarSuave('".$id."','".$corte."','".$a1."','".$a2."');";
+						if($resul=$conexion->query($sql3)){
+							if($resul->num_rows>0){
+								$per=$corte;
+								while($fila2=mysqli_fetch_row($resul)){
+									$tta=$fila2[0];
+									$mta=$fila2[1];
+									$pt1a=$fila2[2];
+									$conexion=conectar();
+									$sql7="CALL obtenerDemanda('".$id."','".$per."');";
+									if($rasul=$conexion->query($sql7)){
+										if($rasul->num_rows>0){
+											while($fila3=mysqli_fetch_row($rasul)){
+												$dem=$fila3[0];
+												echo '<tr class="even"><th>'.$per.'</th><th>'.$dem.'</th><th>'.$mta.'</th><th>'.$tta.'</th><th>'.$pt1a.'</th></tr>';
+											}
+										}
+									}
+									$per++;
+								}
+							}
+						}
 					}else{
 						$conexion=conectar();
 						$slq4="CALL obtenerDatosIniciales('".$id."');";
@@ -45,7 +67,7 @@
 						
 						$conexion=conectar();
 						$sql5="CALL insertarSuave('".$id."','".$datos[$corte]."','".$ttinicial."','".$pt1_inicial."','".$a1."','".$a2."','".$corte."');";
-						echo $sql5;
+						
 						//echo $sql5;
 						if($rest1=$conexion->query($sql5)){
 							if($rest1){
