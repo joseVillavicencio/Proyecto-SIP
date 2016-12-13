@@ -147,34 +147,41 @@ function obtenerPlaneacion(div){
 	var stock_inicial=document.getElementById("stock_inicial").value;
 	var stock_final=0;
 	var normal_boolean=0;
-	
-	var atraso=obtenerOpcionLugar("atraso");
+	var atraso=1;
+	if($("#atraso").is(':checked')){
+		atraso=document.getElementById("atraso").value;
+	}
+	alert(atraso);
+
 	var normal_boolean=0;
 	var extra_boolean=0;
 	var subc_boolean=0;
 	
-	if($("#stock_medio").checked){
-		stock_medio=document.getElementById("stock_medio").value;
+	if($("#stock_medio").is(':checked')){
+		stock_medio=document.getElementById("c1").value;
+		
 	}
 	
-	if($("#stock_final").checked){
-		stock_final=document.getElementById("stock_final").value;
+	if($("#stock_final").is(':checked')){
+		stock_final=document.getElementById("c2").value;
+		
 	}
+	
 	var min_normal=document.getElementById("min_normal").value;
 	var max_normal=document.getElementById("max_normal").value;
 	
-	if($("#normal_boolean").checked){
+	
+	if($("#normal_boolean").is(':checked')){
 		var normal_boolean=document.getElementById("normal_boolean").value;
 	}
+	
 	var min_extra=document.getElementById("min_extra").value;
 	var max_extra=document.getElementById("max_extra").value;
 	
-	if($("#extra_boolean").checked){
-		var extra_boolean=document.getElementById("extra_boolean").value;
-	}
+	
 	var min_subc=document.getElementById("min_subc").value;
 	var max_subc=document.getElementById("max_subc").value;
-	var sub_boolean=document.getElementById("subc_boolean").value;
+	//var sub_boolean=document.getElementById("subc_boolean").value;
 	if($("#subc_boolean").checked){
 		var subc_boolean=document.getElementById("subc_boolean").value;
 	}
@@ -189,10 +196,10 @@ function obtenerPlaneacion(div){
 		'normal_boolean': normal_boolean,
 		'min_extra' : min_extra,
 		'max_extra': max_extra,
-		'extra_boolean' : extra_boolean,
+		//'extra_boolean' : extra_boolean,
 		'min_subc' : min_subc,
 		'max_subc': max_subc,
-		'subc_boolean' : subc_boolean
+		//'subc_boolean' : subc_boolean
 	}
 	$.ajax({
 		data: parametros,
