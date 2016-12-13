@@ -200,7 +200,7 @@ function obtenerPlaneacion(div){
 		type: "POST",
 		
 		success: function(response){			
-				alert(response);
+				
 				$(div).append(response);
 			/*
 			if(response==1){

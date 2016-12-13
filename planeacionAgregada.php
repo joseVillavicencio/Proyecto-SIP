@@ -121,7 +121,29 @@
 				<label>Max Valor Permitido:<input name="stock" value="0" id="max_subc" class="input-huge" type="text"></label><br>
 				<label><input type="checkbox" id="subc_boolean" value="variable"> Es constante</label><br><br>
 				
-				<button class="btn btn-success" onclick="obtenerPlaneacion('#planeacion');" >Enviar</button>
+				<button class="btn btn-success" onclick="obtenerPlaneacion('#planeacion');" >Calcular</button>
+				
+				
+			</div>
+			<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">Cambiar Datos</button>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content" align="center">
+							  <div class="modal-header"  style="color:black;">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">Actualizar Excel</h4>
+							  </div>
+						<div class="modal-body">
+							<form enctype="multipart/form-data" action="php/actualizar_excel.php" method="POST">
+								<!-- MAX_FILE_SIZE debe preceder al campo de entrada del fichero -->
+								<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+								<!-- El nombre del elemento de entrada determina el nombre en el array $_FILES -->
+								Enviar este fichero: <input name="fichero_usuario" type="file" /><br>
+								<input type="submit" value="Enviar fichero" /><br>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-12 col-lg-12">
