@@ -60,8 +60,8 @@
 			</div> 
 			  <div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-				  <li class="active"><a href="index.html"><i class="icon-th icon-white"></i> Previsión</a></li>
-				<li><a href="planeacionAgregada.html"><i class="icon-lock icon-white"></i>Planeación Agregada</a></li>
+				  <li ><a href="index.html"><i class="icon-th icon-white"></i> Previsión</a></li>
+				<li class="active"><a href="planeacionAgregada.html"><i class="icon-lock icon-white"></i>Planeación Agregada</a></li>
 				</ul>
 			  </div><!--/.nav-collapse -->
 		</div>
@@ -74,58 +74,44 @@
 			setProducto($("#nProd").val());
 		</script>
 		<div class="container">
-			<fieldset id="buildyourform">
-				<legend>Media Exponencial Móvil</legend>
-			</fieldset>
 			
-			 <div class="body" id="body">
-        		<h4>Restricciones Stock Inicial</h4><br>
-				<label>Ingrese Stock Inicial:</label><input value="50" name="stock" id="stock_inicial" class="input-huge" type="text"><br><br>
+			<h3 style="color:black;text-align:center;">Planeación Agregada</h3><br>
+			<div class="row" >
+				<div class="col-lg-6 col-sm-6 col-md-6">
+					<h4><strong>Restricciones Stock Inicial</strong></h4><br>
+					<label>Ingrese Stock Inicial:</label><input value="50" name="stock" id="stock_inicial" class="input-huge" type="text"><br>
+					
+					<h4><strong>Restricciones Stock Medio</strong></h4><br>
+					<label><input type="checkbox" id="stock_medio" onclick="$('#c1').prop('disabled',false);"> Tiene que mantener un stock medio de </label>
+					<label><input type="text"  id="c1" disabled></label><br><br>
 				
-				<h4>Restricciones Stock Medio</h4><br>
-				<label><input type="checkbox" id="stock_medio" onclick="$('#c1').prop('disabled',false);">Tiene que mantener un stock medio de </label>
-				<label><input type="text"  id="c1" disabled></label><br><br>
-			
-				<h4>Restricciones Stock Final</h4><br>
-				<label><input type="checkbox" id="stock_final" value="cte" onclick="$('#c2').prop('disabled',false);">Tiene un valor en el último período de</label>
-				<label><input type="text" id="c2" disabled></label><br><br>
+					<h4><strong>Restricciones Stock Final</strong></h4><br>
+					<label><input type="checkbox" id="stock_final" value="cte" onclick="$('#c2').prop('disabled',false);"> Tiene un valor en el último período de</label>
+					<label><input type="text" id="c2" disabled></label><br><br>
+					<h4><strong>Atraso</strong></h4>	
+					<label><input type="checkbox" id="atraso" value="0"> No se permite postergar atrasos</label><br><br>
+					
+				</div>
+				<div class="col-lg-6 col-sm-6 col-md-6">	 
+					<h4><strong>Restricciones Turno Normal</strong></h4><br>
+					<label>Mínimo Valor Permitido:<input value="1" name="stock" id="min_normal" class="input-huge" type="text"></label><br><br>
+					<label>Max Valor Permitido:<input name="stock" value="251" id="max_normal" class="input-huge" type="text"></label><br>
+					<label><input type="checkbox" id="normal_boolean" value="1" checked> Es constante</label><br><br>
+					
+					<h4><strong>Restricciones Producción Turno Extra<strong></h4><br>
+					<label>Mínimo Valor Permitido:<input name="stock" value="0" id="min_extra" class="input-huge" type="text"></label><br><br>
+					<label>Max Valor Permitido:<input name="stock" value="0" id="max_extra" class="input-huge" type="text"></label><br>
+					
 				
-				<div class="grouped fields">
-					<h4>Atraso</h4>	
-					<div class="field">
-					  <div class="ui radio checkbox">
-						<input type="radio" id="atraso" name="atraso" checked="checked" value="1">
-						<label>Se permite postergar</label>
-					  </div>
-					</div>
-					<div class="field">
-					  <div class="ui radio checkbox">
-						<input type="radio" id="atraso" name="atraso" value="0">
-						<label>No se permite postergar</label>
-					  </div>
-					</div>
-				</div><br><br>
-				
-				<h4>Restricciones Turno Normal</h4><br>
-				<label>Mínimo Valor Permitido:<input value="1" name="stock" id="min_normal" class="input-huge" type="text"></label><br><br>
-				<label>Max Valor Permitido:<input name="stock" value="250" id="max_normal" class="input-huge" type="text"></label><br>
-				<label><input type="checkbox" id="normal_boolean" value="variable"> Es constante</label><br><br>
-				
-				<h4>Restricciones Producción Turno Extra</h4><br>
-				<label>Mínimo Valor Permitido:<input name="stock" value="0" id="min_extra" class="input-huge" type="text"></label><br><br>
-				<label>Max Valor Permitido:<input name="stock" value="0" id="max_extra" class="input-huge" type="text"></label><br>
-				<label><input type="checkbox" id="extra_boolean" value="variable"> Es constante</label><br><br>
-			
-				<h4>Restricciones Producción Subcontratada</h4><br>
-				<label>Mínimo Valor Permitido:<input name="stock" id="min_subc" value="0" class="input-huge" type="text"></label><br><br>
-				<label>Max Valor Permitido:<input name="stock" value="0" id="max_subc" class="input-huge" type="text"></label><br>
-				<label><input type="checkbox" id="subc_boolean" value="variable"> Es constante</label><br><br>
-				
-				<button class="btn btn-success" onclick="obtenerPlaneacion('#planeacion');" >Calcular</button>
-				
-				
+					<h4><strong>Restricciones Producción Subcontratada</strong></h4><br>
+					<label>Mínimo Valor Permitido:<input name="stock" id="min_subc" value="0" class="input-huge" type="text"></label><br><br>
+					<label>Max Valor Permitido:<input name="stock" value="0" id="max_subc" class="input-huge" type="text"></label><br>
+				</div>
 			</div>
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">Cambiar Datos</button>
+			<div class="row" style="text-align:center;">
+				<button class="btn btn-success" onclick="obtenerPlaneacion('#planeacion');" >Calcular</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Cambiar Datos</button>
+			</div>
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content" align="center">
@@ -161,7 +147,7 @@
 							  <th>Stock Final</th>
 							  <th>Stock Medio</th>
 							  <th>Atraso</th>
-							  <th>Total</th>
+							  <th>Comentario</th>
 							</tr>
 						  </thead>
 						<tbody id="planeacion">
