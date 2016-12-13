@@ -86,9 +86,9 @@
 		<div class="container" id="eoa" name="eoa">
 			<div class="row">
 				<h3 style="color:black;text-align:center;">Lotes de pedidos</h3><br>
-				<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-6" id="calculo">
+				<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-6" id="calculo" style="text-align:center;">
 					<label>Demanda Anual: <input type="text" id="d" ></label><br>
-					<label>Unidades de tiempo(días, semanas, meses) trabajados en el año: <input type="text" id="t_año" ></label><br>
+					<label>Unidades de tiempo(días, semanas, meses) trabajados en el año: <input type="text" id="t_anio" ></label><br>
 					<label>Lead Time[Unidades de tiempo]: <input type="text" id="t" ></label><br>
 					<label>Costo unitario de producción: <input type="text" id="c" ></label><br>
 					<label>Interés de inventario: <input type="text" id="i"></label><br>
@@ -97,14 +97,62 @@
 					<label>Cantidades Pendientes: <input type="text" id="qp"></label><br>
 					<label>Cantidad de saldo final en stock: <input type="text" id="qf"></label><br>
 					<label>Stock de Seguridad: <input type="text" id="qs"></label><br>
-					<button type="button" class="btn btn-success">Calcular</button>
+					<p style="text-align:center">
+						<button type="button" class="btn btn-success" onclick="verificar();">Calcular</button>
+						<button type="button" class="btn btn-primary" onclick="clean();">Limpiar</button>		
+					</p>
 				</div>
-				<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-6" id="result">
+				<div class="col-lg-5 col-md-5 col-sm-5 col-xs-6" id="result" style="text-align:center;">
 				</div>
+			</div><br>
+			<div class="row" style="text-align:center;">
+				<button type="button" id="desct" class="btn btn-info" disabled data-toggle="modal" data-target="#myModal1">Calcular Tamaño de pedido con descuentos por lote</button>
+				<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal2" >Calcular Stock de Seguridad</button>
 			</div>
 		</div>
-		<br><hr>
-      	<div class="container" id="dscto" name="dscto">
+		<br>
+		<div>
+			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content" align="center">
+							  <div class="modal-header"  style="color:black;">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">Intervalos con Descuentos</h4>
+							  </div>
+						<div class="modal-body">
+							<!--data-dismiss="modal"-->
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center;"><label>Mínimo</label></div>
+								<div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center;"><label>Máximo</label></div>
+								<div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center;"><label>Costo Unitario</label></div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center;" id="mini"><input type="text" name="minimo"><br><input type="text" name="minimo"></label></div>
+								<div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center;" id="maxi"><input type="text" name="maximo"><br><input type="text" name="maximo"></label></div>
+								<div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center;" id="cuan"><input type="text" name="costito"><br><input type="text" name="costito"></label></div>
+							</div>
+							<button type="button" class="btn btn-primary" onclick="agregar();">Agregar Intervalo</button>
+							<button type="button" class="btn btn-success" data-dismiss="modal" onclick="intervalos();">Continuar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content" align="center">
+							  <div class="modal-header"  style="color:black;">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">Stock de Seguridad</h4>
+							  </div>
+						<div class="modal-body">
+							<!--data-dismiss="modal"-->
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+      	<!--<div class="container" id="dscto" name="dscto">
 			<div class="row">
 				<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-6" id="descuento">
 				</div>
@@ -123,7 +171,7 @@
 				</div>
 			</div>
 		</div>
-      	<br>
+      	<br>-->
 	<!-- FOOTER -->	
 	<div id="footerwrap">
       	<footer class="clearfix"></footer>
