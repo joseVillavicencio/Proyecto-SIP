@@ -51,44 +51,115 @@
 									$atraso_actual=$fila[5];
 									$stock_inicial_actual=$fila[6];
 									$stock_final_actual=$fila[7];
-									echo "Periodo".$periodo." ";
+									echo "Periodo".$periodo."<br>";
 									
-									echo "demanda".$demanda." ";
+									//echo "demanda".$demanda." ";
 									//echo "ataso_actual".$atraso_actual;
 									echo "<br>";
 									
 									$produccion_demanda=($pro_normal-$demanda);
-									echo $produccion_demanda;
+									echo "Pro-DEM:".$produccion_demanda."<br>";
 									
 									$valor_stock_final=$stock_inicial_actual+$produccion_demanda;
-									echo $valor_stock_final;
+									echo $stock_inicial_actual."+ ".$produccion_demanda." =";
+									echo "stock final".$valor_stock_final;
 									$stock_medio=($stock_inicial_actual+$valor_stock_final)/2;
-									
+									if($stock_medio<0){
+										echo "stock negativo<br>";
+										$stock_medio=$stock_medio*-1;
+									}
 									if($atraso_actual==0){
 										//if($produccion_$demanda>0){
-										$atraso=0;
+										/*
+										if($stock_inicial_actual==0 && $stock_final_actual==0){ // si no tengo stock inicial ni final y quede debiendo produccion
+											echo "AQUIIIIIIIIIIIIIIIIIIII";
+											$menos_uno=-1;
+											$atraso= ($produccion_demanda)*$menos_uno;
+											echo "atras".$atraso;
+											$conexion = conectar();
+											$sql3 = "call actualizarStock('".$id."','".$periodo."','".$produccion_demanda."',0,0,'".$atraso."');";
+										
+											if($result3 = $conexion->query($sql3)){
+												if($result3){
+												}
+											}
+										}*/
+										
 										$conexion = conectar();
 										$sql3 = "call actualizarStock('".$id."','".$periodo."','".$produccion_demanda."','".$valor_stock_final."','".$stock_medio."','".$atraso."');";
 										
 										if($result3 = $conexion->query($sql3)){
 											if($result3){
 												
-												$periodo_siguiente=$periodo+1;
-												echo "el periodo sgt es";
-												$periodo_siguiente;
+												$uno=1;
+												$periodo_siguiente= $periodo + $uno;
+												
 												$conexion = conectar();
-												$sql4 = "call actualizarSiguiente('".$id."','".$periodo_siguiente."','".$stock_final."');"; // setear el final en el inicial del siguiente
+												$sql4 = "call actualizarSiguiente('".$id."','".$periodo_siguiente."','".$valor_stock_final."');"; // setear el final en el inicial del siguiente
 												
 												if($result4 = $conexion->query($sql4)){
 													if($result4){
-													echo "todo bien hasta aqui<br>";
+													
 													}
 												}	
 												
 											}
-										}	
+										}
+											
+											
 									}else{
-											echo "CASCANUECES";
+										echo "HAY ATTRASo <br>";
+										if($stock_inicial_actual==0 && $stock_final_actual==0){ // si no tengo stock inicial ni final y quede debiendo produccion
+											$atraso= ($produccion_demanda)*-1;
+											echo "CASO ESPECIAL".$atraso." ";
+											$conexion = conectar();
+											$sql3 = "call actualizarStock('".$id."','".$periodo."','".$produccion_demanda."',0,0,'".$atraso."');";
+										
+											if($result3 = $conexion->query($sql3)){
+												if($result3){
+													$uno=1;
+														$periodo_siguiente= $periodo + $uno;
+														
+														$conexion = conectar();
+														$sql4 = "call actualizarSiguiente('".$id."','".$periodo_siguiente."',0);"; // setear el final en el inicial del siguiente
+														
+														if($result4 = $conexion->query($sql4)){
+															if($result4){
+															
+															}
+														}	
+												
+												}
+											}
+										}else{
+										
+											$deuda=$produccion_demanda+$atraso_actual;
+											if($deuda==0){
+												$atraso= ($produccion_demanda)*-1;
+												$conexion = conectar();
+												$sql3 = "call actualizarStock('".$id."','".$periodo."','".$produccion_demanda."',0,0,0);"; // se paga la deuda
+											
+												if($result3 = $conexion->query($sql3)){
+													if($result3){
+														
+														$uno=1;
+														$periodo_siguiente= $periodo + $uno;
+														
+														$conexion = conectar();
+														$sql4 = "call actualizarSiguiente('".$id."','".$periodo_siguiente."',0);"; // setear el final en el inicial del siguiente
+														
+														if($result4 = $conexion->query($sql4)){
+															if($result4){
+															
+															}
+														}	
+														
+													}
+												}
+											}else{
+												echo "me falta esye cso";
+											}
+										}
 									}
 								}
 								
