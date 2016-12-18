@@ -4,45 +4,13 @@ function getProducto(){
 function setProducto(value){
 	localStorage.setItem('producto',value);
 }
-function mandarDatos(div){
-	
-	var parametros = {
-		"periodo": localStorage.getItem("periodo"),
-		"demanda": localStorage.getItem("demanda")
-	}
-	$.ajax({
-		data: parametros,
-		url: "procesar.php",
-		type: "POST",
-		
-		success: function(response){			
-			$(div).append(response);
-			
-		}
-	});
-}
-function mostrarMediaExponencial(div){
-	
-	var parametros = {
 
-		//'p':getProducto(),
-	}
-	$.ajax({
-		data: parametros,
-		url: "php/mostrarDatosMediaExponencial.php",
-		type: "POST",
-		
-		success: function(response){			
-			$(div).append(response);
-		}
-	});
-}
 
 function mostrarEcLineal(div){
 	
 	var parametros = {
 
-		//'p':getProducto(),
+		'p':getProducto(),
 	}
 	$.ajax({
 		data: parametros,
@@ -58,7 +26,7 @@ function mostrarEcLineal(div){
 function mostrarDatosEcLineal(div){
 	
 	var parametros = {
-		//'p':getProducto(),
+		'p':getProducto(),
 	}
 	$.ajax({
 		data: parametros,
@@ -76,7 +44,7 @@ function enviarParametro(div){
 	var c=document.getElementById("c").value; //SETEAR VARIABLE LOCAL DEL PRODUCTO
 	var parametros = {
 		"c" : c,
-		//'p':getProducto(),
+		'p':getProducto(),
 	}
 	$.ajax({
 		data: parametros,
@@ -84,9 +52,11 @@ function enviarParametro(div){
 		type: "POST",
 		
 		success: function(response){			
+			
 			if(response==1){
 				var parametros = {
 					"c" : c,
+					'p':getProducto()
 				}
 				$.ajax({
 					data: parametros,
@@ -104,7 +74,7 @@ function enviarParametro(div){
 function mostrarC(div){
 	
 	var parametros = {
-		//'p':getProducto(),
+		'p':getProducto(),
 	}
 	$.ajax({
 		data: parametros,
@@ -120,7 +90,7 @@ function mostrarC(div){
 function mostrarDatosC(div){
 	
 	var parametros = {
-		//'p':getProducto(),
+		'p':getProducto(),
 	}
 	$.ajax({
 		data: parametros,
@@ -146,13 +116,13 @@ function obtenerPlaneacion(div){
 	var stock_medio=0;
 	var stock_inicial=document.getElementById("stock_inicial").value;
 	var stock_final=0;
+	var stock_medio_final=0;
 	var normal_boolean=0;
 	var atraso=1;
+	
 	if($("#atraso").is(':checked')){
 		atraso=document.getElementById("atraso").value;
 	}
-	alert(atraso);
-
 	var normal_boolean=0;
 	var extra_boolean=0;
 	var subc_boolean=0;
@@ -167,6 +137,10 @@ function obtenerPlaneacion(div){
 		
 	}
 	
+	if($("#stock_medio_final").is(':checked')){
+		stock_medio_final=document.getElementById("c3").value;
+		
+	}
 	var min_normal=document.getElementById("min_normal").value;
 	var max_normal=document.getElementById("max_normal").value;
 	
@@ -196,10 +170,9 @@ function obtenerPlaneacion(div){
 		'normal_boolean': normal_boolean,
 		'min_extra' : min_extra,
 		'max_extra': max_extra,
-		//'extra_boolean' : extra_boolean,
 		'min_subc' : min_subc,
 		'max_subc': max_subc,
-		//'subc_boolean' : subc_boolean
+		'stock_medio_final' : stock_medio_final
 	}
 	$.ajax({
 		data: parametros,
@@ -207,23 +180,36 @@ function obtenerPlaneacion(div){
 		type: "POST",
 		
 		success: function(response){			
-				
-				$(div).append(response);
-			/*
+			
+		
 			if(response==1){
 				var parametros = {
-						"c" : c,
+					'producto':getProducto(),
+					'stock_inicial' : stock_inicial,
+					'stock_medio': stock_medio,
+					'stock_final': stock_final,
+					'atraso' : atraso,
+					'min_normal' : min_normal,
+					'max_normal' : max_normal,
+					'normal_boolean': normal_boolean,
+					'min_extra' : min_extra,
+					'max_extra': max_extra,
+					'min_subc' : min_subc,
+					'max_subc': max_subc,
+					'stock_medio_final' : stock_medio_final
 				}
 				$.ajax({
 					data: parametros,
-					url: "php/mostrarDatosMediaExponencial.php",
+					url: "php/mostrarPlaneacion.php",
 					type: "POST",
 					
 					success: function(response){			
 						$(div).append(response);
 					}
 				});
-			}*/
+			}else{
+				alert("Ha ocurrid un problema");
+			}
 		}
 	});
 }
