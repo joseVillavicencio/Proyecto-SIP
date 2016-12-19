@@ -27,17 +27,41 @@ if (move_uploaded_file($_FILES['fichero_usuario']['tmp_name'], $fichero_subido))
 				while($fila = mysqli_fetch_row($result)){
 					$id=$fila[0];
 				}
-				for ($i = 2; $i <= $data->sheets[0]['numRows']; $i++) {
-					$sql2="CALL insertarPlaneacion('".$id."','".$data->sheets[0]['cells'][$i][2]."','".$data->sheets[0]['cells'][$i][3]."','".$data->sheets[0]['cells'][$i][4]."','".$data->sheets[0]['cells'][$i][5]."','".$data->sheets[0]['cells'][$i][6]."');";
-					$conexion=conectar();
-					if($result2 = $conexion->query($sql2)){
-						if($result2){
-							$n++;	
-						}else{
-							$flag=false;
+				$conexion = conectar();
+				$sql = "CALL existePlaneacion('".$id."');";
+				if($result = $conexion->query($sql)){
+					if($result->num_rows >0){
+						$conexion = conectar();
+						$sql = "CALL borrarPlaneacion('".$id."');";
+						if($result = $conexion->query($sql)){
+							if($result){
+								for ($i = 2; $i <= $data->sheets[0]['numRows']; $i++) {
+									$sql2="CALL insertarPlaneacion('".$id."','".$data->sheets[0]['cells'][$i][2]."','".$data->sheets[0]['cells'][$i][3]."','".$data->sheets[0]['cells'][$i][4]."','".$data->sheets[0]['cells'][$i][5]."','".$data->sheets[0]['cells'][$i][6]."');";
+									$conexion=conectar();
+									if($result2 = $conexion->query($sql2)){
+										if($result2){
+											$n++;	
+										}else{
+											$flag=false;
+										}
+									}
+								}
+							}
+						}	
+					}else{
+						for ($i = 2; $i <= $data->sheets[0]['numRows']; $i++) {
+							$sql2="CALL insertarPlaneacion('".$id."','".$data->sheets[0]['cells'][$i][2]."','".$data->sheets[0]['cells'][$i][3]."','".$data->sheets[0]['cells'][$i][4]."','".$data->sheets[0]['cells'][$i][5]."','".$data->sheets[0]['cells'][$i][6]."');";
+							$conexion=conectar();
+							if($result2 = $conexion->query($sql2)){
+								if($result2){
+									$n++;	
+								}else{
+									$flag=false;
+								}
+							}
 						}
 					}
-				}
+				}	
 			}else{
 				$conexion=conectar();
 				$sql3="SELECT NOW();";
