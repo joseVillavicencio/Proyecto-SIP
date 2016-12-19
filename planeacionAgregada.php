@@ -56,7 +56,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="navbar-brand" href="index.html"><img src="assets/img/logo30.png" alt=""> BLOCKS Dashboard</a>
+			  <a class="navbar-brand" href="index.html"><img src="assets/img/logo30.png" alt=""> SIP</a>
 			</div> 
 			  <div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -84,7 +84,9 @@
 					<h4><strong>Restricciones Stock Medio</strong></h4><br>
 					<label><input type="checkbox" id="stock_medio" onclick="$('#c1').prop('disabled',false);"> Tiene que mantener un stock medio de </label>
 					<label><input type="text"  id="c1" disabled></label><br><br>
-				
+					<label><input type="checkbox" id="stock_medio_final"  onclick="$('#c3').prop('disabled',false);"> Tiene un valor en el último período de</label>
+					<label><input type="text" id="c3" disabled></label><br><br>
+					
 					<h4><strong>Restricciones Stock Final</strong></h4><br>
 					<label><input type="checkbox" id="stock_final" value="cte" onclick="$('#c2').prop('disabled',false);"> Tiene un valor en el último período de</label>
 					<label><input type="text" id="c2" disabled></label><br><br>

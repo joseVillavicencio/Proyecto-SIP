@@ -73,18 +73,17 @@
 	
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2" id="subir_excel_planeacion">
+				<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2" id="subir_excel_planeacion" align="center">
+					 <strong><center><legend>Datos Planeación Agregada</legend></center></strong>
 					<form enctype="multipart/form-data" action="php/subir_excel_planeacion.php" method="POST">
-						<!-- MAX_FILE_SIZE debe preceder al campo de entrada del fichero -->
 						<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-						<!-- El nombre del elemento de entrada determina el nombre en el array $_FILES -->
-						Enviar este fichero: <input name="fichero_usuario" type="file" /><br>
-						<input type="submit" value="Enviar fichero" /><br>
+						Seleccione un documento Excel: <input name="fichero_usuario" type="file" /><br>
+						<input type="submit" value="Enviar" /><br>
 					</form>
 				</div>
 			</div>
 		</div>
-      	
+      	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<div id="footerwrap">
       	<footer class="clearfix"></footer>
       	<div class="container">
@@ -99,11 +98,8 @@
 	</div><!-- /footerwrap -->
 
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-    <script type="text/javascript" src="assets/js/admin.js"></script>
+    
 
   
 </body></html>

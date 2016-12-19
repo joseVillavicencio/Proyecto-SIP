@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <!-- Le styles -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
     <!-- DATA TABLE CSS -->
@@ -21,13 +19,6 @@
         padding-top: 60px;
       }
     </style>
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
@@ -63,9 +54,7 @@
         </div> 
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-             
-              <li class="active"><a href="tables.html"><i class="icon-th icon-white"></i>Previsión</a></li>
-              
+                 <li class="active"><a href="index.html"><i class="icon-th icon-white"></i>Previsión</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -73,25 +62,18 @@
 	
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2" id="subir_excel">
-					
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2" id="subir_excel">
+				<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2" id="subir_excel" align="center">
 					<form enctype="multipart/form-data" action="php/subir_excel.php" method="POST">
-						<!-- MAX_FILE_SIZE debe preceder al campo de entrada del fichero -->
+						 <strong><center><legend>Datos Previsión</legend></center></strong><br>
 						<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-						<!-- El nombre del elemento de entrada determina el nombre en el array $_FILES -->
-						Enviar este fichero: <input name="fichero_usuario" type="file" /><br>
-						<input type="submit" value="Enviar fichero" /><br>
+						Seleccione un documento Excel: <input name="fichero_usuario" type="file" /><br>
+						<input type="submit" value="Enviar" /><br>
 					</form>
 				</div>
 			</div>
 			<br>
 		</div>
-      	
+    <br><br><br><br><br><br><br><br><br><br><br><br><br> 	
 	<div id="footerwrap">
       	<footer class="clearfix"></footer>
       	<div class="container">
@@ -104,13 +86,6 @@
       		</div><!-- /row -->
       	</div><!-- /container -->		
 	</div><!-- /footerwrap -->
-
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-    
-
-  
+ 
 </body></html>
