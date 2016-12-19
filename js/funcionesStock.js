@@ -114,11 +114,10 @@ function calcular(d,t_anio,t,c,i,a,qr,qp,qf,qs){
 	var q= parseInt(d_chica*parseInt(tr_aste+t))-qf-qp+qr+qs;
 	var qmax=q_aste+qs;
 	
+	localStorage.setItem('d',d);
+	localStorage.setItem('i',i);
+	localStorage.setItem('a',a);
 	
-	datos['d']=d;
-	datos['c']=c;
-	datos['i']=i;
-	datos['a']=a;
 	
 	$("#result").append('<h4>EOQ</h4><br><label>Q*:  '+q_aste+' [unidades]</label><br><label>N*:  '+n_aste+'[pedidos/año]</label><br><label>CT:  '+ct+' [unidades monetarias]</label><br>');
 	$("#result").append('<h4>Punto de pedido</h4><br><label>PP: '+pp+' [unidades de tiempo a trabajar]</label><br><label>Q*max:  '+qmax+' [unidades]</label><br><label>Q*min:  '+qs+' [unidades]</label><br>');
@@ -130,4 +129,32 @@ function agregar(){
 	$("#mini").append('<br><input type="text" name="minimo">');
 	$("#maxi").append('<br><input type="text" name="maximo">');
 	$("#cuan").append('<br><input type="text" name="costito">');
+}
+function agregarP(){
+	$("#previ").append('<br><input type="text" name="prevista">');
+	$("#real").append('<br><input type="text" name="real">');
+}
+
+function intervalos(){
+	var d=localStorage.getItem('d');
+	var a=localStorage.getItem('a');
+	var i=localStorage.getItem('i');
+	var minimos=document.getElementsByName('minimo');
+	var maximos=document.getElementsByName('maximo');
+	var costos=document.getElementsByName('costito');
+	for(var j=0;j<minimos.length;j++ ){
+		var costito=costos[j].value;
+		var q_aste= Math.sqrt((2*d*a)/(costito*i));
+		console.log(q_aste);
+		console.log(maximos[j].value)
+		if(q_aste<maximos[j].value){
+			console.log('el numero es: '+q_aste+'  en el intervalo'+minimos[j].value+'-'+maximos[j].value+' con un costo de: '+costos[j].value);
+			break;
+		}
+		//console.log(minimos[i].value+'  '+maximos[i].value+'  '+costos[i].value);
+	}
+}
+
+function seguridad(){
+
 }
