@@ -146,6 +146,16 @@
 							  </div>
 						<div class="modal-body">
 							<!--data-dismiss="modal"-->
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-sm-6" style="text-align:center;"><label>Demanda prevista</label></div>
+								<div class="col-lg-6 col-md-6 col-sm-6" style="text-align:center;"><label>Demanda real</label></div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-sm-6" style="text-align:center;" id="previ"><input type="text" name="prevista"><br><input type="text" name="prevista"></label></div>
+								<div class="col-lg-6 col-md-6 col-sm-6" style="text-align:center;" id="real"><input type="text" name="real"><br><input type="text" name="real"></label></div>
+							</div>
+							<button type="button" class="btn btn-primary" onclick="agregarP();">Agregar Periodo</button>
+							<button type="button" class="btn btn-success" data-dismiss="modal" onclick="seguridad();">Continuar</button>
 						</div>
 					</div>
 				</div>
