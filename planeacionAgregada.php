@@ -60,8 +60,9 @@
 			</div> 
 			  <div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-				  <li ><a href="index.html"><i class="icon-th icon-white"></i> Previsión</a></li>
-				<li class="active"><a href="planeacionAgregada.html"><i class="icon-lock icon-white"></i>Planeación Agregada</a></li>
+					<li><a href="pronostico.php"><i class="icon-th icon-white"></i>Previsión</a></li>
+					<li class="active"><a href="planeacionAgregada.php"><i class="icon-th icon-white"></i>Planificación</a></li>
+					<li><a href="gestion_stock.html"><i class="icon-th icon-white"></i>Gestión de Stock</a></li>
 				</ul>
 			  </div><!--/.nav-collapse -->
 		</div>
