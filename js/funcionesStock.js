@@ -136,6 +136,9 @@ function agregarP(){
 }
 
 function intervalos(){
+	var flag=false;
+	var q_opti,first;
+	var comp_cos=new Array();
 	var d=localStorage.getItem('d');
 	var a=localStorage.getItem('a');
 	var i=localStorage.getItem('i');
@@ -145,16 +148,73 @@ function intervalos(){
 	for(var j=0;j<minimos.length;j++ ){
 		var costito=costos[j].value;
 		var q_aste= Math.sqrt((2*d*a)/(costito*i));
-		console.log(q_aste);
-		console.log(maximos[j].value)
-		if(q_aste<maximos[j].value){
-			console.log('el numero es: '+q_aste+'  en el intervalo'+minimos[j].value+'-'+maximos[j].value+' con un costo de: '+costos[j].value);
-			break;
+		if(flag){
+			var costi=(d*costito)+((d/minimos[j].value)*a)+((minimos[j].value/2)*costito*i);
+			//alert(costi);
+			comp_cos.push(costi);
 		}
-		//console.log(minimos[i].value+'  '+maximos[i].value+'  '+costos[i].value);
+		if((!flag)&&(q_aste<maximos[j].value)){
+			flag=true;
+			first=j;
+			q_opti=q_aste;
+			var coste=(d*costito)+((d/q_aste)*a)+((q_aste/2)*costito*i);
+			comp_cos.push(coste);
+		}//console.log(minimos[i].value+'  '+maximos[i].value+'  '+costos[i].value);	
 	}
+	var menor=comp_cos[0];
+	var indice;
+	for(var m=0;m<comp_cos.length;m++){
+		if(comp_cos[m]<menor){
+			var ine=first+m;
+			//alert('es mas conveniente: '+minimos[ine].value);
+			q_opti=minimos[ine].value;
+			menor=comp_cos[m];
+		}
+	}
+	$("#result").append('<br><h4>Descuento por Intervalos</h4><br><label>El tamaño más conveniente:  '+q_opti+' [unidades]</label><br><label>Costo total:  '+menor+' [Unidades Monetarias]</label>');
+	$("#desct").prop('disabled',true);
 }
 
 function seguridad(){
+	var servi=document.getElementById('servi').value;
+	var reales=document.getElementsByName('real');
+	var previstos=document.getElementsByName('prevista');
+	var errores= new Array();
+	for(var j=0;j<reales.length;j++){
+		var dif=reales[j].value-previstos[j].value;
+		errores.push(dif);
+	}
+	var suma_err=0;
+	for(var k=0;k<errores.length;k++){
+		suma_err=suma_err+Math.abs(errores[k]);
+	}
+	var mad=suma_err/errores.length;
+	var qs;
+	switch(servi){
+		case '80':
+			qs=mad*0.84;
+			break;
+		case '85':
+			qs=mad*1.03;
+			break;
+		case '90':
+			qs=mad*1.28;
+			break;
+		case '95':
+			qs=mad*1.64;
+			break;
+		case '99':
+			qs=mad*2.32;
+			break;
+		case '99.99':
+			qs=mad*3.09;
+			break;
+		default:
+			alert("El nivel de servicio escogido no esta dentro de la base de datos.");
+			$("#myModal2").modal('show');
+			break;
+	}
+	$("#result").append('<br><h4>Stock de Seguridad</h4><br><label>El límite de seguridad óptimo es:  '+qs+' [unidades]</label>');
+	
 
 }
