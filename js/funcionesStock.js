@@ -136,6 +136,9 @@ function agregarP(){
 }
 
 function intervalos(){
+	var flag=false;
+	var q_opti,first;
+	var comp_cos=new Array();
 	var d=localStorage.getItem('d');
 	var a=localStorage.getItem('a');
 	var i=localStorage.getItem('i');
@@ -145,14 +148,30 @@ function intervalos(){
 	for(var j=0;j<minimos.length;j++ ){
 		var costito=costos[j].value;
 		var q_aste= Math.sqrt((2*d*a)/(costito*i));
-		console.log(q_aste);
-		console.log(maximos[j].value)
-		if(q_aste<maximos[j].value){
-			console.log('el numero es: '+q_aste+'  en el intervalo'+minimos[j].value+'-'+maximos[j].value+' con un costo de: '+costos[j].value);
-			break;
-		}
-		//console.log(minimos[i].value+'  '+maximos[i].value+'  '+costos[i].value);
+		if((!flag)&&(q_aste<maximos[j].value)){
+			flag=true;
+			first=j;
+			q_opti=q_aste;
+			var coste=(d*costito)+((d/q_aste)*a)+((q_aste/2)*costito*i);
+			comp_cos.push(coste);
+		}//console.log(minimos[i].value+'  '+maximos[i].value+'  '+costos[i].value);
+		if(flag){
+			var costi=(d*costito)+((d/minimos[j])*a)+((minimos[j]/2)*costito*i);
+			comp_cos.push(costi);
+		}	
 	}
+	var menor=comp_cos[0];
+	var indice;
+	for(var m=0;m<comp_cos.length-1;m++){
+		if(comp_cos[m]<comp[0]){
+			if(comp_cos[m]<menor){
+				q_opti=minimos[first+m];
+				menor=comp_cos[m]
+			}
+		}
+	}
+	$("#result").append('<br><h4>Descuento por Intervalos</h4><br><label>El tamaño más conveniente:  '+q_opti+' [unidades]</label><br><label>Costo total:  '+menor+' [Unidades Monetarias]</label>');
+	$("#desct").prop('disabled',true);
 }
 
 function seguridad(){
