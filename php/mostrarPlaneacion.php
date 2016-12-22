@@ -25,7 +25,7 @@
 	$cs=$_POST["cs"];
 	$costo_atraso=$_POST["costo_atraso"];
 	$costo_stock=$_POST["costo_stock"];
-	
+	$suma_plan=0;
 	$conexion = conectar();
 	
 	$sqll = "call buscarIdPro('".$producto."');";
@@ -125,8 +125,11 @@
 						$costo_atraso=$fila[14];
 					}
 					$produccion_comparar=$pro_normal;
+					$suma_plan=$costo_normal+$costo_extra+$costo_subc+$costo_stock+$costo_atraso+$suma_plan;
+					
 					echo "<tr><td>".$periodo."</td><td>".$demanda."</td><td>".$pro_normal."</td><td>".$pro_extra."</td><td>".$pro_subc."</td><td>".$pro_dem."</td><td>".$stock_inicial_actual."</td><td>".$stock_final_actual."</td><td>".$stock_medio_actual."</td><td>".$atraso_actual."</td>";
 					echo '<td>'.$costo_normal.'</td><td>'.$costo_extra.'</td><td>'.$costo_subc.'</td><td>'.$costo_stock.'</td><td>'.$costo_atraso.'</td>';
+					
 					if(($pro_normal>=$min_normal) && ($pro_normal<=$max_normal)){
 						if(($pro_extra>=$min_extra) && ($pro_extra<=$max_extra)){
 							if(($pro_subc>=$min_subc)&&($pro_subc<=$max_subc)){
@@ -185,7 +188,7 @@
 											}else{
 													if($normal_boolean==1){ // produccion normal es cte 
 														if($pro_normal==$produccion_comparar){
-															echo "TODO OK<br>";
+															//echo "TODO OK<br>";
 														}else{
 															echo "<td>La producción debe ser constante </td></tr>";
 														}
@@ -208,7 +211,7 @@
 													if($normal_boolean==1){ // produccion normal es cte 
 
 														if($pro_normal==$produccion_comparar){
-															echo "TODO OK<br>";
+															//echo "TODO OK<br>";
 														}else{
 															echo "<td>La producción debe ser constante </td></tr>";
 														}
@@ -220,7 +223,7 @@
 												if($normal_boolean==1){ // produccion normal es cte 
 													//	echo "prod normal es cte<br>";
 													if($pro_normal==$produccion_comparar){
-														echo "TODO OK<br>";
+														//echo "TODO OK<br>";
 													}else{
 														echo "<td>La producción debe ser constante </td></tr>";
 													}
@@ -288,5 +291,6 @@
 				}
 			}
 		}
+		echo '<tr class="odd"><td>TOTAL</td>:<td>'.$suma_plan.'</td></tr>';
 	mysqli_close($conexion);	
 ?>
