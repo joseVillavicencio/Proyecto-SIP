@@ -59,13 +59,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html"><img src="assets/img/logo30.png" alt=""> SIP</a>
+          <a class="navbar-brand" href="index.html"><img src="assets/img/logo30.png" alt="">SIP</a>
         </div> 
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
              
               <li class="active"><a href="pronostico.php"><i class="icon-th icon-white"></i>Previsión</a></li>
-			  <li><a href="planeacionAgregada.php"><i class="icon-th icon-white"></i>Planificación</a></li>
+			  <li><a href="#"><i class="icon-th icon-white"></i>Planificación</a></li>
 			  <li><a href="gestion_stock.html"><i class="icon-th icon-white"></i>Gestión de Stock</a></li>
               
             </ul>
@@ -80,7 +80,7 @@
 			setProducto($("#nProd").val());
 		</script>
       	<div class="container">
-      	    <h2><center><strong>Seleccione la técnica de previsión </strong></center></h2>
+      	    <h3 style="color:black;text-align:center;"><strong>Seleccione la técnica de previsión </strong></h3>
 			<br>
       		<div class="row">
       			<div class="col-sm-offset-1 col-sm-2 col-lg-offset-1 col-lg-2">
@@ -88,7 +88,7 @@
 						<div class="table_style4"> 
 							<div class="column">
 								<ul>
-				                  	<li><strong>Media  Móvil Exponencial</strong></li>
+				                  	<li><strong>Media exponencial móvil</strong></li>
 									<li class="header_row">
 										<h4 style="color:white">Promedio</h4>
 									</li>
@@ -163,7 +163,7 @@
 				</div>
       		</div><!-- /row -->
       	</div><!-- /container -->
-      	<br><br><br><br>
+      	<br>
 	<!-- FOOTER -->	
 	<div id="footerwrap">
       	<footer class="clearfix"></footer>

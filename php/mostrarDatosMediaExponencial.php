@@ -33,7 +33,7 @@
 									$demanda= $fila[1];
 									$prevision= $fila[2];
 									$error= $fila[3];
-									echo '<tr><td>'.$periodo.'<td><td>'.$demanda.'<td><td>'.$prevision.'<td><td>'.$error.'<td></tr>';
+									echo '<tr><td>'.$periodo.'</td><td>'.$demanda.'</td><td>'.$prevision.'</td><td>'.$error.'</td></tr>';
 								}
 								$periodo=$periodo+1;
 								$demanda="-";
@@ -45,7 +45,7 @@
 											$periodo= $fila[0];
 											$prevision= $fila[1];
 											$error= $fila[3];
-											echo '<tr><td>'.$periodo.'<td><td>'.$demanda.'<td><td>'.$prevision.'<td><td>'.$error.'<td></tr>';
+											echo '<tr><td>'.$periodo.'</td><td>'.$demanda.'</td><td>'.$prevision.'</td><td>'.$error.'</td></tr>';
 										}
 									}
 
