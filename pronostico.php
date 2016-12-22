@@ -59,7 +59,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html"><img src="assets/img/logo30.png" alt=""> SIP</a>
+          <a class="navbar-brand" href="index.html"><img src="assets/img/logo30.png" alt="">SIP</a>
         </div> 
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -88,7 +88,7 @@
 						<div class="table_style4"> 
 							<div class="column">
 								<ul>
-				                  	<li><strong>Media  Móvil Exponencial</strong></li>
+				                  	<li><strong>Media exponencial móvil</strong></li>
 									<li class="header_row">
 										<h4 style="color:white">Promedio</h4>
 									</li>
@@ -163,7 +163,7 @@
 				</div>
       		</div><!-- /row -->
       	</div><!-- /container -->
-      	<br><br><br><br>
+      	<br>
 	<!-- FOOTER -->	
 	<div id="footerwrap">
       	<footer class="clearfix"></footer>

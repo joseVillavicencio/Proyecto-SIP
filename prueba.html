@@ -12,70 +12,48 @@
 
 	<script type="text/javascript">
 		$(function () {
-			Highcharts.chart('container', {
-				chart: {
-					type: 'scatter',
-					zoomType: 'xy'
-				},
-				title: {
-					text: 'Height Versus Weight of 507 Individuals by Gender'
-				},
-				subtitle: {
-					text: 'Source: Heinz  2003'
-				},
-				xAxis: {
-					title: {
-						enabled: true,
-						text: 'Height (cm)'
-					},
-					startOnTick: true,
-					endOnTick: true,
-					showLastLabel: true
-				},
-				yAxis: {
-					title: {
-						text: 'Weight (kg)'
-					}
-				},
-				legend: {
-					layout: 'vertical',
-					align: 'left',
-					verticalAlign: 'top',
-					x: 100,
-					y: 70,
-					floating: true,
-					backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
-					borderWidth: 1
-				},
-				plotOptions: {
-					scatter: {
-						marker: {
-							radius: 5,
-							states: {
-								hover: {
-									enabled: true,
-									lineColor: 'rgb(100,100,100)'
-								}
-							}
-						},
-						states: {
-							hover: {
-								marker: {
-									enabled: false
-								}
-							}
-						},
-						tooltip: {
-							headerFormat: '<b>{series.name}</b><br>',
-							pointFormat: '{point.x} cm, {point.y} kg'
-						}
-					}
-				},
+    Highcharts.chart('container', {
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: 'Monthly Average Temperature'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value + '°';
+                }
+            }
+        },
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    radius: 4,
+                    lineColor: '#666666',
+                    lineWidth: 1
+                }
+            }
+        },
 				series: [{
 					name: 'Female',
 					color: 'rgba(223, 83, 83, .5)',
 					data: 
-						['Primera Opción:<br>'+FechaUno(),parseInt(contarFechaUno())]
+						[/*'Primera Opción:<br>'+FechaUno(),parseInt(contarFechaUno())*/]
 						/*[[161.2, 51.6], [167.5, 59.0], [159.5, 49.2], [157.0, 63.0], [155.8, 53.6],
 						[170.0, 59.0], [159.1, 47.6], [166.0, 69.8], [176.2, 66.8], [160.2, 75.2],
 						[172.5, 55.2], [170.9, 54.2], [172.9, 62.5], [153.4, 42.0], [160.0, 50.0],
