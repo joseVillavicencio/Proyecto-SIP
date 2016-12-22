@@ -114,11 +114,10 @@ function calcular(d,t_anio,t,c,i,a,qr,qp,qf,qs){
 	var q= parseInt(d_chica*parseInt(tr_aste+t))-qf-qp+qr+qs;
 	var qmax=q_aste+qs;
 	
+	localStorage.setItem('d',d);
+	localStorage.setItem('i',i);
+	localStorage.setItem('a',a);
 	
-	datos['d']=d;
-	datos['c']=c;
-	datos['i']=i;
-	datos['a']=a;
 	
 	$("#result").append('<h4>EOQ</h4><br><label>Q*:  '+q_aste+' [unidades]</label><br><label>N*:  '+n_aste+'[pedidos/año]</label><br><label>CT:  '+ct+' [unidades monetarias]</label><br>');
 	$("#result").append('<h4>Punto de pedido</h4><br><label>PP: '+pp+' [unidades de tiempo a trabajar]</label><br><label>Q*max:  '+qmax+' [unidades]</label><br><label>Q*min:  '+qs+' [unidades]</label><br>');
@@ -130,4 +129,92 @@ function agregar(){
 	$("#mini").append('<br><input type="text" name="minimo">');
 	$("#maxi").append('<br><input type="text" name="maximo">');
 	$("#cuan").append('<br><input type="text" name="costito">');
+}
+function agregarP(){
+	$("#previ").append('<br><input type="text" name="prevista">');
+	$("#real").append('<br><input type="text" name="real">');
+}
+
+function intervalos(){
+	var flag=false;
+	var q_opti,first;
+	var comp_cos=new Array();
+	var d=localStorage.getItem('d');
+	var a=localStorage.getItem('a');
+	var i=localStorage.getItem('i');
+	var minimos=document.getElementsByName('minimo');
+	var maximos=document.getElementsByName('maximo');
+	var costos=document.getElementsByName('costito');
+	for(var j=0;j<minimos.length;j++ ){
+		var costito=costos[j].value;
+		var q_aste= Math.sqrt((2*d*a)/(costito*i));
+		if(flag){
+			var costi=(d*costito)+((d/minimos[j].value)*a)+((minimos[j].value/2)*costito*i);
+			//alert(costi);
+			comp_cos.push(costi);
+		}
+		if((!flag)&&(q_aste<maximos[j].value)){
+			flag=true;
+			first=j;
+			q_opti=q_aste;
+			var coste=(d*costito)+((d/q_aste)*a)+((q_aste/2)*costito*i);
+			comp_cos.push(coste);
+		}//console.log(minimos[i].value+'  '+maximos[i].value+'  '+costos[i].value);	
+	}
+	var menor=comp_cos[0];
+	var indice;
+	for(var m=0;m<comp_cos.length;m++){
+		if(comp_cos[m]<menor){
+			var ine=first+m;
+			//alert('es mas conveniente: '+minimos[ine].value);
+			q_opti=minimos[ine].value;
+			menor=comp_cos[m];
+		}
+	}
+	$("#result").append('<br><h4>Descuento por Intervalos</h4><br><label>El tamaño más conveniente:  '+q_opti+' [unidades]</label><br><label>Costo total:  '+menor+' [Unidades Monetarias]</label>');
+	$("#desct").prop('disabled',true);
+}
+
+function seguridad(){
+	var servi=document.getElementById('servi').value;
+	var reales=document.getElementsByName('real');
+	var previstos=document.getElementsByName('prevista');
+	var errores= new Array();
+	for(var j=0;j<reales.length;j++){
+		var dif=reales[j].value-previstos[j].value;
+		errores.push(dif);
+	}
+	var suma_err=0;
+	for(var k=0;k<errores.length;k++){
+		suma_err=suma_err+Math.abs(errores[k]);
+	}
+	var mad=suma_err/errores.length;
+	var qs;
+	switch(servi){
+		case '80':
+			qs=mad*0.84;
+			break;
+		case '85':
+			qs=mad*1.03;
+			break;
+		case '90':
+			qs=mad*1.28;
+			break;
+		case '95':
+			qs=mad*1.64;
+			break;
+		case '99':
+			qs=mad*2.32;
+			break;
+		case '99.99':
+			qs=mad*3.09;
+			break;
+		default:
+			alert("El nivel de servicio escogido no esta dentro de la base de datos.");
+			$("#myModal2").modal('show');
+			break;
+	}
+	$("#result").append('<br><h4>Stock de Seguridad</h4><br><label>El límite de seguridad óptimo es:  '+qs+' [unidades]</label>');
+	
+
 }

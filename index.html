@@ -54,7 +54,9 @@
         </div> 
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                 <li class="active"><a href="index.html"><i class="icon-th icon-white"></i>Previsión</a></li>
+                <li><a href="#"><i class="icon-th icon-white"></i>Previsión</a></li>
+				<li><a href="#"><i class="icon-th icon-white"></i>Planificación</a></li>
+				<li><a href="gestion_stock.html"><i class="icon-th icon-white"></i>Gestión de Stock</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -73,7 +75,19 @@
 			</div>
 			<br>
 		</div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br> 	
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2" id="subir_excel_planeacion" align="center">
+					 <strong><center><legend>Datos Planeación Agregada</legend></center></strong>
+					<form enctype="multipart/form-data" action="php/subir_excel_planeacion.php" method="POST">
+						<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+						Seleccione un documento Excel: <input name="fichero_usuario" type="file" /><br>
+						<input type="submit" value="Enviar" /><br>
+					</form>
+				</div>
+			</div>
+		</div>
+	<br><br><br><br><br><br><br><br> 	
 	<div id="footerwrap">
       	<footer class="clearfix"></footer>
       	<div class="container">
