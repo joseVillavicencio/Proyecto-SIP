@@ -213,3 +213,19 @@ function obtenerPlaneacion(div){
 		}
 	});
 }
+function mostrarC(div){
+	
+	var parametros = {
+		'p':getProducto(),
+	}
+	$.ajax({
+		data: parametros,
+		url: "php/mostrarCorrelacion.php",
+		type: "POST",
+		
+		success: function(response){			
+			
+			$(div).append(response);
+		}
+	});
+}
