@@ -51,3 +51,32 @@ function pro_indice(parametros){
 		}
 	});
 }
+function graficare(){
+	var parametros={
+		'prod':getProducto()
+	};
+	$.ajax({
+		data: parametros,
+		url: "php/datos_grafico.php",
+		type: "POST",
+		dataType: "JSON",
+		cache:	false,
+		
+		success: function(response){	
+			graph(response);
+		}
+	});
+}
+function graph(datos){
+	Highcharts.chart('graphic', {
+		chart: {type: 'spline'}, 
+		title: {text: 'Gráfico de Demanda historico'},
+		xAxis: {title: { text: 'Periodo'}},
+		yAxis: { title: { text: 'Demanda'},labels: {formatter: function () { return this.value;}}},
+		tooltip: {crosshairs: true,shared: true},
+		plotOptions: {spline: {marker: {radius: 4,lineColor: '#666666',lineWidth: 1}}},
+		series: [{name: 'Productos',color: 'rgba(223, 83, 83, .5)',data:datos}]
+	});
+}
+
+

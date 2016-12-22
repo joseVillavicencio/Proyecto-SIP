@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>BLOCKS - Bootstrap Dashboard Theme</title>
+		<title>SIP</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="">
@@ -10,8 +10,8 @@
 		<link href="assets/css/main.css" rel="stylesheet">
 		<link href="assets/css/table.css" rel="stylesheet">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="js/funcionesPrevision.js" type="text/javascript"></script>
-		<script src="Highcharts-4.1.5/js/highcharts.js"></script>
 		<style type="text/css">
 		  body {
 			padding-top: 60px;
@@ -47,7 +47,7 @@
 			  <div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="pronostico.php"><i class="icon-th icon-white"></i>Previsión</a></li>
-					<li><a href="planeacionAgregada.php"><i class="icon-th icon-white"></i>Planificación</a></li>
+					<li><a href="#"><i class="icon-th icon-white"></i>Planificación</a></li>
 					<li><a href="gestion_stock.html"><i class="icon-th icon-white"></i>Gestión de Stock</a></li>
 				</ul>
 			  </div><!--/.nav-collapse -->
@@ -55,13 +55,18 @@
 		</div>
 
 		<div class="container">
-			<h3 style="color:black;"><strong>Media Móvil Exponencial</strong></h3>
+			<h3 style="color:black;text-align:center;"><strong>Media Móvil Exponencial</strong></h3>
 			<hr>
-			 <div class="body" id="body">
+			 <div class="row" id="body">
+				<div class="col-lg-6 col-md-6 col-sm-6">
         		<label for="name">Ingrese coeficiente de ponderación:</label>
 				<input name="c" id="c" class="input-huge" type="text">
 				
 				<button class="btn btn-success" onclick="enviarParametro('#media');" >Enviar</button>
+				</div>
+				<div class="col-lg-6 col-md-6  col-sm-6" id="graphic">
+				<script type="text/javascript">graficare();</script>
+			</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-12 col-lg-12">
