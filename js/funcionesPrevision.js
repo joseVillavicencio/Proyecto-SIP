@@ -259,7 +259,6 @@ function graficare(){
 		cache:	false,
 		
 		success: function(response){
-			alert(response);
 			graph(response);
 		}
 	});
