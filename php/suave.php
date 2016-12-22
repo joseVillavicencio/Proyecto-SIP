@@ -48,6 +48,7 @@
 							}
 						}
 					}else{
+						
 						$conexion=conectar();
 						$slq4="CALL obtenerDatosIniciales('".$id."');";
 						if($rest=$conexion->query($slq4)){
