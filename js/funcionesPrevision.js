@@ -45,7 +45,8 @@ function enviarParametro(div){
 	var parametros = {
 		"c" : c,
 		'p':getProducto(),
-	}
+	};
+	$(div).empty();
 	$.ajax({
 		data: parametros,
 		url: "php/calcularMExponencial.php",
@@ -63,7 +64,8 @@ function enviarParametro(div){
 					url: "php/mostrarDatosMediaExponencial.php",
 					type: "POST",
 					
-					success: function(response){			
+					success: function(response){
+						
 						$(div).append(response);
 					}
 				});
@@ -119,6 +121,11 @@ function obtenerPlaneacion(div){
 	var stock_medio_final=0;
 	var normal_boolean=0;
 	var atraso=1;
+	var costo_atraso=0;
+	var ce=document.getElementById("ce").value;
+	var cn=document.getElementById("cn").value;
+	var cs=document.getElementById("cs").value;
+	var costo_stock=document.getElementById("costo_stock").value;
 	
 	if($("#atraso").is(':checked')){
 		atraso=document.getElementById("atraso").value;
@@ -132,6 +139,9 @@ function obtenerPlaneacion(div){
 		
 	}
 	
+	var costo_atraso=document.getElementById("costo_atraso").value;
+		
+
 	if($("#stock_final").is(':checked')){
 		stock_final=document.getElementById("c2").value;
 		
@@ -148,7 +158,7 @@ function obtenerPlaneacion(div){
 	if($("#normal_boolean").is(':checked')){
 		var normal_boolean=document.getElementById("normal_boolean").value;
 	}
-	
+	alert(normal_boolean);
 	var min_extra=document.getElementById("min_extra").value;
 	var max_extra=document.getElementById("max_extra").value;
 	
@@ -173,6 +183,7 @@ function obtenerPlaneacion(div){
 		'min_subc' : min_subc,
 		'max_subc': max_subc,
 		'stock_medio_final' : stock_medio_final
+		
 	}
 	$.ajax({
 		data: parametros,
@@ -196,7 +207,12 @@ function obtenerPlaneacion(div){
 					'max_extra': max_extra,
 					'min_subc' : min_subc,
 					'max_subc': max_subc,
-					'stock_medio_final' : stock_medio_final
+					'stock_medio_final' : stock_medio_final,
+					'cn': cn,
+					'ce':ce ,
+					'cs': cs,
+					'costo_atraso' : costo_atraso,
+					'costo_stock': costo_stock
 				}
 				$.ajax({
 					data: parametros,
@@ -204,11 +220,12 @@ function obtenerPlaneacion(div){
 					type: "POST",
 					
 					success: function(response){			
+						$(div).empty();
 						$(div).append(response);
 					}
 				});
 			}else{
-				alert("Ha ocurrid un problema");
+				alert("Ha ocurrido un problema");
 			}
 		}
 	});

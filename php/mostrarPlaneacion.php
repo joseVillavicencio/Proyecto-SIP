@@ -20,6 +20,12 @@
 	$uno=1;
 	$cantidad=1;
 	$valor2=1;
+	$cn=$_POST["cn"];
+	$ce=$_POST["ce"];
+	$cs=$_POST["cs"];
+	$costo_atraso=$_POST["costo_atraso"];
+	$costo_stock=$_POST["costo_stock"];
+	
 	$conexion = conectar();
 	
 	$sqll = "call buscarIdPro('".$producto."');";
@@ -39,8 +45,63 @@
 			}	
 		}
 	}	
-	
-
+	while($valor2<=$cantidad){
+		$conexion = conectar();
+		$sqlF = "call obtenerPlaneacionFinal('".$id."','".$valor2."');";
+		if($resultF = $conexion->query($sqlF)){
+			if($resultF->num_rows >0){
+				while($fila = mysqli_fetch_row($resultF)){
+					$periodo=$fila[0];
+					$pro_normal=$fila[2];
+					$pro_extra=$fila[3];
+					$pro_subc=$fila[4];
+					$atraso_actual=$fila[5];
+					$stock_medio_actual=$fila[8];
+					if($pro_normal!=0){
+						$conexion = conectar();
+						$cn2=$pro_normal*$cn;
+						$costo_stock2=$costo_stock*$stock_medio_actual;
+						$sql_n = "call actualizarCostoNormal('".$id."','".$periodo."','".$cn2."','".$costo_stock2."');";
+						if($result_n = $conexion->query($sql_n)){
+							if($result_n){
+							}
+						}	
+					}
+					if($pro_extra!=0){
+						$conexion = conectar();
+						$ce2=$ce*$pro_extra;
+						$sql_e = "call actualizarCostoExtra('".$id."','".$periodo."','".$ce2."');";
+						if($result_e = $conexion->query($sql_e)){
+							if($result_e){
+							}
+						}
+					}	
+					if($pro_subc!=0){
+						$conexion = conectar();
+						$cs2=$cs*$pro_subc;
+						$sql_s = "call actualizarCostoSubc('".$id."','".$periodo."','".$cs2."');";
+						if($result_s = $conexion->query($sql_s)){
+							if($result_s){
+							}
+						}	
+					}	
+						if($atraso_actual!=0){
+							$conexion = conectar();
+							$atraso_actual=$atraso_actual*-1;
+							$costo_atraso2= $costo_atraso*$atraso_actual;
+							$sql_a = "call actualizarAtraso('".$id."','".$periodo."','".$costo_atraso2."');";
+							if($result_a = $conexion->query($sql_a)){
+								if($result_a){
+								}
+							}	
+						}	
+					
+				}
+				$valor2=$valor2+1;
+			}
+		}
+	}		
+	$valor2=1;
 		while($valor2<=$cantidad){
 			$conexion = conectar();
 			$sqlF = "call obtenerPlaneacionFinal('".$id."','".$valor2."');";
@@ -57,8 +118,15 @@
 						$stock_final_actual=$fila[7];
 						$stock_medio_actual=$fila[8];
 						$pro_dem=$fila[9];
+						$costo_normal=$fila[10];
+						$costo_extra=$fila[11];
+						$costo_subc=$fila[12];
+						$costo_stock=$fila[13];
+						$costo_atraso=$fila[14];
 					}
+					$produccion_comparar=$pro_normal;
 					echo "<tr><td>".$periodo."</td><td>".$demanda."</td><td>".$pro_normal."</td><td>".$pro_extra."</td><td>".$pro_subc."</td><td>".$pro_dem."</td><td>".$stock_inicial_actual."</td><td>".$stock_final_actual."</td><td>".$stock_medio_actual."</td><td>".$atraso_actual."</td>";
+					echo '<td>'.$costo_normal.'</td><td>'.$costo_extra.'</td><td>'.$costo_subc.'</td><td>'.$costo_stock.'</td><td>'.$costo_atraso.'</td>';
 					if(($pro_normal>=$min_normal) && ($pro_normal<=$max_normal)){
 						if(($pro_extra>=$min_extra) && ($pro_extra<=$max_extra)){
 							if(($pro_subc>=$min_subc)&&($pro_subc<=$max_subc)){
