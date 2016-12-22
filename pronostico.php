@@ -65,7 +65,7 @@
             <ul class="nav navbar-nav">
              
               <li class="active"><a href="pronostico.php"><i class="icon-th icon-white"></i>Previsión</a></li>
-			  <li><a href="planeacionAgregada.php"><i class="icon-th icon-white"></i>Planificación</a></li>
+			  <li><a href="#"><i class="icon-th icon-white"></i>Planificación</a></li>
 			  <li><a href="gestion_stock.html"><i class="icon-th icon-white"></i>Gestión de Stock</a></li>
               
             </ul>
@@ -80,7 +80,7 @@
 			setProducto($("#nProd").val());
 		</script>
       	<div class="container">
-      	    <h2><center><strong>Seleccione la técnica de previsión </strong></center></h2>
+      	    <h3 style="color:black;text-align:center;"><strong>Seleccione la técnica de previsión </strong></h3>
 			<br>
       		<div class="row">
       			<div class="col-sm-offset-1 col-sm-2 col-lg-offset-1 col-lg-2">

@@ -60,7 +60,7 @@
 			</div> 
 			  <div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="pronostico.php"><i class="icon-th icon-white"></i>Previsión</a></li>
+					<li><a href="#"><i class="icon-th icon-white"></i>Previsión</a></li>
 					<li class="active"><a href="planeacionAgregada.php"><i class="icon-th icon-white"></i>Planificación</a></li>
 					<li><a href="gestion_stock.html"><i class="icon-th icon-white"></i>Gestión de Stock</a></li>
 				</ul>
