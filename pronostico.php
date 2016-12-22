@@ -88,7 +88,7 @@
 						<div class="table_style4"> 
 							<div class="column">
 								<ul>
-				                  	<li><strong>Media exponencial móvil</strong></li>
+				                  	<li><strong>Media  Móvil Exponencial</strong></li>
 									<li class="header_row">
 										<h4 style="color:white">Promedio</h4>
 									</li>
@@ -163,7 +163,7 @@
 				</div>
       		</div><!-- /row -->
       	</div><!-- /container -->
-      	<br>
+      	<br><br><br><br>
 	<!-- FOOTER -->	
 	<div id="footerwrap">
       	<footer class="clearfix"></footer>
