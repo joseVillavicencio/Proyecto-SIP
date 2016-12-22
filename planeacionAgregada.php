@@ -81,6 +81,7 @@
 				<div class="col-lg-6 col-sm-6 col-md-6">
 					<h4><strong>Restricciones Stock Inicial</strong></h4><br>
 					<label>Ingrese Stock Inicial:</label><input value="50" name="stock" id="stock_inicial" class="input-huge" type="text"><br>
+					<label>Ingrese costo de stock:</label><input value="2" name="costo_stock" id="costo_stock" class="input-huge" type="text"><br>
 					
 					<h4><strong>Restricciones Stock Medio</strong></h4><br>
 					<label><input type="checkbox" id="stock_medio" onclick="$('#c1').prop('disabled',false);"> Tiene que mantener un stock medio de </label>
@@ -91,24 +92,28 @@
 					<h4><strong>Restricciones Stock Final</strong></h4><br>
 					<label><input type="checkbox" id="stock_final" value="cte" onclick="$('#c2').prop('disabled',false);"> Tiene un valor en el último período de</label>
 					<label><input type="text" id="c2" disabled></label><br><br>
+					
 					<h4><strong>Atraso</strong></h4>	
 					<label><input type="checkbox" id="atraso" value="0"> No se permite postergar atrasos</label><br><br>
-					
+					<label>El costo por atraso es de:</label><input value="20" name="costo_atraso" id="costo_atraso" class="input-huge" type="text"><br>
+				
 				</div>
 				<div class="col-lg-6 col-sm-6 col-md-6">	 
 					<h4><strong>Restricciones Turno Normal</strong></h4><br>
 					<label>Mínimo Valor Permitido:<input value="1" name="stock" id="min_normal" class="input-huge" type="text"></label><br><br>
 					<label>Max Valor Permitido:<input name="stock" value="251" id="max_normal" class="input-huge" type="text"></label><br>
+					<label>Ingrese costo del turno normal:</label><input value="4" name="cn" id="cn" class="input-huge" type="text"><br>
 					<label><input type="checkbox" id="normal_boolean" value="1" checked> Es constante</label><br><br>
 					
 					<h4><strong>Restricciones Producción Turno Extra<strong></h4><br>
 					<label>Mínimo Valor Permitido:<input name="stock" value="0" id="min_extra" class="input-huge" type="text"></label><br><br>
 					<label>Max Valor Permitido:<input name="stock" value="0" id="max_extra" class="input-huge" type="text"></label><br>
-					
+					<label>Ingrese costo del turno extra:</label><input value="6" name="stock" id="ce" class="input-huge" type="text"><br>
 				
 					<h4><strong>Restricciones Producción Subcontratada</strong></h4><br>
 					<label>Mínimo Valor Permitido:<input name="stock" id="min_subc" value="0" class="input-huge" type="text"></label><br><br>
 					<label>Max Valor Permitido:<input name="stock" value="0" id="max_subc" class="input-huge" type="text"></label><br>
+					<label>Ingrese costo del turno subcontrado:</label><input value="10" name="stock" id="cs" class="input-huge" type="text"><br>
 				</div>
 			</div>
 			<div class="row" style="text-align:center;">
@@ -150,6 +155,11 @@
 							  <th>Stock Final</th>
 							  <th>Stock Medio</th>
 							  <th>Atraso</th>
+							  <th>Costo Producción Normal</th>
+							  <th>Costo Producción Tiempo Extra</th>
+							  <th>Costo Producción Subcontratada</th>
+							  <th>Costo Stock</th>
+							   <th>Costo Atraso</th>
 							  <th>Comentario</th>
 							</tr>
 						  </thead>
@@ -160,6 +170,7 @@
 					 <br>
 				</div><!--/span12 -->
 			</div><!-- /row -->
+			
 		</div> <!-- /container -->
 			<br>   	
 			<br>
