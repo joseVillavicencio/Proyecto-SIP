@@ -20,41 +20,35 @@
 					$producto=$fila[0];
 				}
 				$conexion = conectar();
-				$sql32 = "call existenDatosME('".$producto."','".$coef."');";
-				if($result32 = $conexion->query($sql32)){
-
-					if($result32->num_rows >0){
+				$sql = "call mostrarME('".$producto."','".$coef."');";
+				if($result2 = $conexion->query($sql)){
+					if($result2->num_rows >0){
+						while($fila = mysqli_fetch_row($result2)){
+							$periodo= $fila[0];
+							$demanda= $fila[1];
+							$prevision= $fila[2];
+							$error= $fila[3];
+							echo '<tr><td>'.$periodo.'</td><td>'.$demanda.'</td><td>'.$prevision.'</td><td>'.$error.'</td></tr>';
+						}
+						$periodo=$periodo+1;
+						$demanda="-";
 						$conexion = conectar();
-						$sql = "call mostrarME('".$producto."','".$coef."');";
+						$sql = "call mostrarProximaR('".$producto."','".$coef."','".$periodo."');";
 						if($result2 = $conexion->query($sql)){
 							if($result2->num_rows >0){
 								while($fila = mysqli_fetch_row($result2)){
 									$periodo= $fila[0];
-									$demanda= $fila[1];
-									$prevision= $fila[2];
+									$prevision= $fila[1];
 									$error= $fila[3];
 									echo '<tr><td>'.$periodo.'</td><td>'.$demanda.'</td><td>'.$prevision.'</td><td>'.$error.'</td></tr>';
 								}
-								$periodo=$periodo+1;
-								$demanda="-";
-								$conexion = conectar();
-								$sql = "call mostrarProximaR('".$producto."','".$coef."','".$periodo."');";
-								if($result2 = $conexion->query($sql)){
-									if($result2->num_rows >0){
-										while($fila = mysqli_fetch_row($result2)){
-											$periodo= $fila[0];
-											$prevision= $fila[1];
-											$error= $fila[3];
-											echo '<tr><td>'.$periodo.'</td><td>'.$demanda.'</td><td>'.$prevision.'</td><td>'.$error.'</td></tr>';
-										}
-									}
-
-								}
 							}
+
 						}
 					}
+						
+					}
 
-				}
 			}
 		}
 	}

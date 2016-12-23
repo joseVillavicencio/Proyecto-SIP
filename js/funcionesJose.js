@@ -5,7 +5,7 @@ function getProducto(){
 	return localStorage.getItem('producto');
 }
 function suave(div){
-	alert("entra");
+	
 	var parametros = {
 		'prod':getProducto(),
 		'alpha1':document.getElementById('alpha1').value,
@@ -18,7 +18,7 @@ function suave(div){
 		type: "POST",
 		
 		success: function(response){			
-			alert(response);
+			
 			$(div).append(response);
 			
 		}
