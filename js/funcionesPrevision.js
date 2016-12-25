@@ -54,7 +54,6 @@ function enviarParametro(div){
 		
 		success: function(response){			
 			
-			if(response==1){
 				var parametros = {
 					"c" : c,
 					'p':getProducto()
@@ -69,7 +68,7 @@ function enviarParametro(div){
 						$(div).append(response);
 					}
 				});
-			}
+			
 		}
 	});
 }
@@ -158,7 +157,7 @@ function obtenerPlaneacion(div){
 	if($("#normal_boolean").is(':checked')){
 		var normal_boolean=document.getElementById("normal_boolean").value;
 	}
-	alert(normal_boolean);
+	
 	var min_extra=document.getElementById("min_extra").value;
 	var max_extra=document.getElementById("max_extra").value;
 	
