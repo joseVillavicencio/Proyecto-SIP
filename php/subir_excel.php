@@ -27,6 +27,14 @@ if (move_uploaded_file($_FILES['fichero_usuario']['tmp_name'], $fichero_subido))
 				while($fila = mysqli_fetch_row($result)){
 					$id=$fila[0];
 				}
+				$conexion = conectar();
+				$sql2 = "call reiniciarPronostico('".$id."');";
+				if($result2 = $conexion->query($sql2)){
+					if($result2){
+						
+					}
+				}
+				
 				for ($i = 2; $i <= $data->sheets[0]['numRows']; $i++) {
 					$sql2="CALL insertarPronostico('".$id."','".$data->sheets[0]['cells'][$i][4]."','".$data->sheets[0]['cells'][$i][2]."','".$data->sheets[0]['cells'][$i][3]."');";
 					$conexion=conectar();

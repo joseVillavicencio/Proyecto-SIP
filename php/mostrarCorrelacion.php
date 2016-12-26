@@ -48,15 +48,22 @@
 								$sqlAB = "call consultarC('".$producto."','".$a."','".$b."');";
 								if($resultAB = $conexion->query($sqlAB)){
 									if($resultAB->num_rows >0){
-									}else{
 										$conexion = conectar();
-										$sql2 = "call insertarCorrelacion('".$producto."','".$a."','".$b."','".$x."');";
+										$sql2 = "call reiniciarCorrelacion('".$producto."');";
 										if($result2 = $conexion->query($sql2)){
 											if($result2){
 												
 											}
 										}
 									}
+									$conexion = conectar();
+									$sql2 = "call insertarCorrelacion('".$producto."','".$a."','".$b."','".$x."');";
+									if($result2 = $conexion->query($sql2)){
+										if($result2){
+											
+										}
+									}
+									
 								}	
 								
 							}
