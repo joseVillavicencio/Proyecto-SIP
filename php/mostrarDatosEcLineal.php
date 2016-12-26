@@ -51,15 +51,22 @@
 								$sqlAB = "call consultarAB('".$producto."','".$a."','".$b."');";
 								if($resultAB = $conexion->query($sqlAB)){
 									if($resultAB->num_rows >0){
-									}else{
 										$conexion = conectar();
-										$sql2 = "call insertarAB('".$producto."','".$a."','".$b."','".$x."');";
+										$sql2 = "call reiniciarLineal('".$producto."');";
 										if($result2 = $conexion->query($sql2)){
 											if($result2){
 												
 											}
 										}
 									}
+									$conexion = conectar();
+									$sql2 = "call insertarAB('".$producto."','".$a."','".$b."','".$x."');";
+									if($result2 = $conexion->query($sql2)){
+										if($result2){
+											
+										}
+									}
+									
 								}
 								
 							}
